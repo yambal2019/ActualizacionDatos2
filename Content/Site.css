@@ -1,0 +1,31 @@
+﻿.texto {
+    color: #000000;
+    padding: 20px 17px 10px 17px;
+    font-size: 12px;
+    font-family: 'proxima_nova_amedium';
+    font-weight: normal;
+}
+
+.fondo {
+
+    background-color: rgba(240, 80, 80, 0.1);
+
+}
+
+.btn.btn-border.btn-primary {
+    border: 2px solid #ff6900;
+    color: rgba(31, 181, 172, 1.0);
+    background: transparent;
+    color: #ff6900;
+    width: 100%;
+}
+.loginpage label {
+    font-size: 14px;
+    line-height: 23px;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+.espacioAltoBAjo {
+    margin: 5px 0;
+}
