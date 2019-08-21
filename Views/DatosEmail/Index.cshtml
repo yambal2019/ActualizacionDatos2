@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<h2>Felicitaciones </h2>
+<h3>Haz ganado un 5% de descuento en tu siguiente pedido! </h3>
+
+<h4>Quieres seguir ganando</h4>
+
+@using (Html.BeginForm("Index", "DatosEmail", FormMethod.Post))
+{
+
+ 
+
+    <p class="submit">
+        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary btn-border" value="COMENZAR" />
+    </p>
+
+}

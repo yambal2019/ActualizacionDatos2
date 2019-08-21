@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Email";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+<h2>¿Lista para seguir Ganando ?</h2>
+@using (Html.BeginForm("Email", "DatosEmail", FormMethod.Post))
+{
+
+
+<div>
+    
+        <input type="password" name="pwd" id="user_pass" class="form-control" placeholder="Ingresa tu email" />
+
+</div>
+    <p class="submit">
+        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary btn-border" value="Enviar" />
+    </p>
+
+}
+
