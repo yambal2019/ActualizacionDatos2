@@ -19386,7 +19386,7 @@ h3 {
 
 h4 {
     font-size: 18px;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     font-weight: 400;
     letter-spacing: .03em;
     line-height: 1
@@ -20332,11 +20332,11 @@ header {
         z-index: 9999
     }
 
-    .main-menu .brand-logo {
+    /*.main-menu .brand-logo {
         display: inline-block;
         padding-top: 35px;
         padding-bottom: 35px
-    }
+    }*/
 
     .main-menu .menu-left {
         display: flex;
@@ -25906,7 +25906,7 @@ footer {
 }
 
     .register-page .theme-card .theme-form label {
-        text-transform: capitalize;
+        /*text-transform: capitalize;*/
         color: #333;
         font-size: 14px;
         font-weight: 600;
@@ -25916,8 +25916,8 @@ footer {
 
     .register-page .theme-card .theme-form input {
         border-color: #ddd;
-        font-size: 12px;
-        padding: 10px 20px;
+        font-size: 14px;
+        padding: 5px 20px;
         margin-bottom: 10px;
         height: inherit
     }
@@ -32301,6 +32301,9 @@ footer.footer-5 {
     .main-nav-center .toggle-nav {
         top: -80px
     }
+    /*.panelnaranja {
+        display: none;
+    }*/
 }
 
 @media (min-width:578px) {
@@ -32479,7 +32482,7 @@ footer.footer-5 {
             font-size: 14px
         }
 
-    .brand-logo {
+    /*.brand-logo {
         position: absolute;
         left: 50%;
         margin-right: -50%;
@@ -32487,72 +32490,86 @@ footer.footer-5 {
         transform: translateX(-50%);
         padding-top: 30px !important;
         padding-bottom: 30px !important
+    }*/
+
+}
+
+.brand-logo {
+    left: 50%;
+    margin-right: -50%;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    display: inline-block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+
+.toggle-nav {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+.rtl .main-nav-center .toggle-nav {
+    right: unset;
+    left: 15px
+}
+
+.rtl .main-menu .menu-right .icon-nav .mobile-cart,
+.rtl .main-menu .menu-right .icon-nav .mobile-search,
+.rtl .main-menu .menu-right .icon-nav .mobile-setting {
+    right: unset;
+    left: 16%
+}
+
+    .rtl .main-menu .menu-right .icon-nav .mobile-cart .show-div,
+    .rtl .main-menu .menu-right .icon-nav .mobile-search .show-div,
+    .rtl .main-menu .menu-right .icon-nav .mobile-setting .show-div {
+        left: unset;
+        right: 0
     }
 
-    .toggle-nav {
-        padding-top: 30px;
-        padding-bottom: 30px
-    }
-
-    .rtl .main-nav-center .toggle-nav {
-        right: unset;
-        left: 15px
-    }
-
-    .rtl .main-menu .menu-right .icon-nav .mobile-cart,
-    .rtl .main-menu .menu-right .icon-nav .mobile-search,
-    .rtl .main-menu .menu-right .icon-nav .mobile-setting {
-        right: unset;
-        left: 16%
-    }
-
-        .rtl .main-menu .menu-right .icon-nav .mobile-cart .show-div,
-        .rtl .main-menu .menu-right .icon-nav .mobile-search .show-div,
-        .rtl .main-menu .menu-right .icon-nav .mobile-setting .show-div {
-            left: unset;
-            right: 0
+        .rtl .main-menu .menu-right .icon-nav .mobile-cart .show-div.shopping-cart,
+        .rtl .main-menu .menu-right .icon-nav .mobile-search .show-div.shopping-cart,
+        .rtl .main-menu .menu-right .icon-nav .mobile-setting .show-div.shopping-cart {
+            left: unset !important;
+            right: -118px !important
         }
 
-            .rtl .main-menu .menu-right .icon-nav .mobile-cart .show-div.shopping-cart,
-            .rtl .main-menu .menu-right .icon-nav .mobile-search .show-div.shopping-cart,
-            .rtl .main-menu .menu-right .icon-nav .mobile-setting .show-div.shopping-cart {
-                left: unset !important;
-                right: -118px !important
-            }
-
-        .rtl .main-menu .menu-right .icon-nav .mobile-setting .setting {
-            left: unset !important
-        }
-
-    .rtl .main-menu .menu-right .icon-nav .mobile-cart {
-        right: unset;
-        left: 48%
+    .rtl .main-menu .menu-right .icon-nav .mobile-setting .setting {
+        left: unset !important
     }
 
-    .rtl .main-menu .menu-right .icon-nav .mobile-search {
-        right: unset;
-        left: 80%
+.rtl .main-menu .menu-right .icon-nav .mobile-cart {
+    right: unset;
+    left: 48%
+}
+
+.rtl .main-menu .menu-right .icon-nav .mobile-search {
+    right: unset;
+    left: 80%
+}
+
+.rtl .main-menu .menu-left .navbar {
+    padding: 30px 0 30px 25px !important
+}
+
+.rtl .top-header .header-dropdown .mobile-account,
+.rtl .top-header .header-dropdown .mobile-wishlist {
+    right: unset;
+    left: 32%
+}
+
+    .rtl .top-header .header-dropdown .mobile-account .onhover-show-div,
+    .rtl .top-header .header-dropdown .mobile-wishlist .onhover-show-div {
+        right: 0
     }
 
-    .rtl .main-menu .menu-left .navbar {
-        padding: 30px 0 30px 25px !important
-    }
+.rtl .top-header .header-dropdown .mobile-wishlist {
+    right: unset;
+    left: 64%
+}
 
-    .rtl .top-header .header-dropdown .mobile-account,
-    .rtl .top-header .header-dropdown .mobile-wishlist {
-        right: unset;
-        left: 32%
-    }
-
-        .rtl .top-header .header-dropdown .mobile-account .onhover-show-div,
-        .rtl .top-header .header-dropdown .mobile-wishlist .onhover-show-div {
-            right: 0
-        }
-
-    .rtl .top-header .header-dropdown .mobile-wishlist {
-        right: unset;
-        left: 64%
-    }
 }
 
 @media (max-width:480px) {
@@ -37580,10 +37597,22 @@ footer.footer-5 {
     background: #ff6900;
     width: 100%;
 }
+
 .texto h4 {
     color: #ff4c3b;
     font-weight: 700;
     margin-bottom: 10px;
     font-size: 23px;
-    text-align:center;
+    text-align: center;
+}
+
+.main-menu .brand-logo {
+    display: inline-block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.submit {
+    margin-left: 20px;
+    margin-right: 20px;
 }

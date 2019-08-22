@@ -10,22 +10,22 @@
     <meta content="" name="author" />
     <style>
 
-        #siteWrapper {
+        /*#siteWrapper {
             width: 100%;
             min-width: 320px;
-        }
+        }*/
 
         #topbar {
             height: 82px;
             position: relative;
         }
 
-        
 
-        #navbarWrapper {
+
+        .panelnaranja {
             background-color: #ff6900;
-            height: 41px;
-            z-index: 1000;
+            padding-top: 40px;
+            margin-bottom: 15px;
         }
 
         .siteContainer {
@@ -35,11 +35,8 @@
         }
 
         .bajar10 {
-            padding-top:15px;
+            padding-top: 15px;
         }
-
-       
-
     </style>
 
     @Styles.Render("~/Content/css")
@@ -47,22 +44,38 @@
 </head>
 <body class=" ">
 
-    <div id="siteWrapper" class="clearfix">
-        <div id="topbar" class="siteContainer clearfix">
+    <div>
 
-            <img class="bajar10" src="~/imagenes/logo.png" />
 
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="main-menu">
+                        <div class="menu-left">
+                            <div class="brand-logo">
+                                <a href="/multikart/home/one">
+                                    <img alt="" class="img-fluid" src="~/imagenes/logo.png">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div id="navbarWrapper" class="clearfix">
-            <div id="navbar" class="clearfix navbar-bg-Color">
+
+        <div class="container">
+            <div class="panelnaranja">
 
             </div>
         </div>
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-3" style="margin-top: 20px;">
+                <div class="col-lg-6 offset-lg-3">
                     @RenderBody()
                 </div>
             </div>
@@ -73,9 +86,9 @@
 
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/pace.min.js"></script>
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/pace.min.js"></script>
+        @RenderSection("scripts", required: false)
 </body>
 </html>

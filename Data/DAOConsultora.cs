@@ -36,8 +36,7 @@ namespace ActualizacionDatosCampaña.Data
                                 objModel.idPromocion = Convert.ToInt32(dt.Rows[0]["idPromocion"]);
                                 objModel.vchNombre = dt.Rows[0]["vchNombreCompleto"].ToString();
                                 objModel.Exito = 1;
-                                //objModel.vchEncriptadoSMS = Helper.Encrypt(objModel.vchCodConsultora + "," +objModel.idPromocion + "," + "1");
-                                //objModel.vchEncriptadoEmail = Helper.Encrypt(objModel.vchCodConsultora + "," + objModel.idPromocion + "," + "2");
+                                
                             }
                         }
                     }

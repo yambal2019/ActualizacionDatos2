@@ -17,21 +17,36 @@ namespace ActualizacionDatosCampaña.Controllers
         {
             return View();
         }
+
+
         [HttpPost]
         public ActionResult Index(ConsultoraModel modelo)
         {
             DAOConsultora.Busqueda_Consultora(ref modelo);
-
-            if (modelo.Exito == 1)
+            if (modelo.bitTerminosCondiciones == true)
             {
-                Session["Model"] = modelo;
-
-                return RedirectToAction("Consultora", "Datos");
+                if (modelo.Exito == 1)
+                {
+                    Session["Model"] = modelo;
+                    return RedirectToAction("Consultora", "Datos");
+                }
+                else
+                {
+                    ModelState.AddModelError("DNI", "Error DNI no Existe..");
+                    return View();
+                }
             }
-            ViewBag.Message = "Error DNI no Existe..";
-
-            return View();
+            else
+            {
+                ModelState.AddModelError("DNI", "acepte los terminos y condiciones");
+                return View();
+            }
         }
+
+
+
+
+
         [HttpGet]
         public ActionResult Consultora()
         {
@@ -58,25 +73,43 @@ namespace ActualizacionDatosCampaña.Controllers
                 DatoModel objDatoModel = new DatoModel();
                 try
                 {
+                    ConsultoraModel objConsultoraModel = (ConsultoraModel)Session["Model"];
 
                     //*******************************************************************
 
 
-                    objDatoModel.idTipoDocumento = 1;
-                    objDatoModel.vchDato = modelo.vchDato;
-                    // objDatoModel.vchEmail = modelo.vchEmail;
+                    //objDatoModel.idTipoDocumento = 1;
+                    //objDatoModel.vchDato = modelo.vchDato;
+                    //// objDatoModel.vchEmail = modelo.vchEmail;
+                    //objDatoModel.vchTelefono = modelo.vchTelefono;
+                    //objDatoModel.bitEnviado = true;
+                    //objDatoModel.dtmFechaEnvio = DateTime.Now;
+                    //objDatoModel.vchCodConsultora = modelo.vchCodConsultora;
+                    //objDatoModel.vchEstado = "1";
+                    //objDatoModel.idPromocion = modelo.idPromocion;
+
+                    //objDatoModel.vchDato = modelo.vchDato;
+                    objDatoModel.vchEmail = string.Empty;
                     objDatoModel.vchTelefono = modelo.vchTelefono;
-                    objDatoModel.bitEnviado = true;
-                    objDatoModel.dtmFechaEnvio = DateTime.Now;
-                    objDatoModel.vchCodConsultora = modelo.vchCodConsultora;
+                    objDatoModel.bitEnviadoSMS = true;
+                    objDatoModel.dtmFechaEnvioSMS = DateTime.Now;
+
+                    objDatoModel.bitConfirmadoSMS = false;
+                    // objDatoModel.dtmFechaConfirmadoSMS= DBNull.Value;
+                    // objDatoModel.bitEnviadoEmail= modelo.bitEnviadoEmail;
+                    //objDatoModel.dtmFechaEnviadoEmail= modelo.dtmFechaEnviadoEmail;
+                    //objDatoModel.bitConfirmadoEmail= modelo.bitConfirmadoEmail;
+                    // objDatoModel.dtmFechaConfirmadoEmail= modelo.dtmFechaConfirmadoEmail;
+                    objDatoModel.vchCodConsultora = objConsultoraModel.vchCodConsultora;
                     objDatoModel.vchEstado = "1";
-                    objDatoModel.idPromocion = modelo.idPromocion;
+                    objDatoModel.idPromocion = objConsultoraModel.idPromocion;
+
                     DAODato.Add(ref objDatoModel);
                     //*******************************************************************
-                    objDatoModel.vchEncriptadoSMS = Encriptacion.Base64Encode(objDatoModel.idDato + "," + "1" + "," + objDatoModel.vchCodConsultora + "," + 1);
+                    objDatoModel.vchEncriptadoSMS = Encriptacion.Base64Encode(objDatoModel.idDato + "," + "1" );
 
 
-                    await Helper.EnvioSMSAsync(modelo);
+                     await Helper.EnvioSMSAsync(objDatoModel);
 
                     //*******************************************************************
 

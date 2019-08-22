@@ -13,16 +13,16 @@
 
 
             <div class="texto">
-                <h4>  Actualiza y Gana.. </h4>
+                <h4>  Actualiza y gana.. </h4>
             </div>
 
 
             <p>
                 <label for="user_pass">
-                    Ingresa tu DNI:<br />
+                    Ingresa tu dni:<br />
 
                 </label>
-                <input type="password" name="vchDato" id="vchDato" class="form-control" />
+                <input type="text" name="vchDato" id="vchDato" class="form-control" />
 
             </p>
             <p class="forgetmenot">
@@ -32,11 +32,14 @@
                 </label>
                 <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class=""> Acepto Términos y Condiciones </a>
             </p>
+              
+            <div>
+                <p> @Html.ValidationSummary()</p>
+            </div>
 
-
-            <p class="submit">
+            <div class="submit">
                 <input type="submit" name="wp-submit" id="btnsubmit" class="btn btn-primary btn-border" value="COMENZAR" />
-            </p>
+            </div>
 
         }
     </div>

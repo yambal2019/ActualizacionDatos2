@@ -76,5 +76,9 @@ namespace ActualizacionDatosCampaña.Models
         public string vchEncriptadoEmail { get; set; }
         
         public string vchRuta { get; set; }
+        public Boolean bitEnviadoSMS { get; set; }
+        public DateTime dtmFechaEnvioSMS { get; set; }
+        public Boolean bitEnviadoEmail { get; set; }
+        public DateTime dtmFechaEnviadoEmail { get; set; }
     }
 }
