@@ -129,6 +129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DatosController.cs" />
     <Compile Include="Controllers\DatosEmailController.cs" />
+    <Compile Include="Controllers\FinalDatosController.cs" />
     <Compile Include="Data\BaseData.cs" />
     <Compile Include="Data\DAOConsultora.cs" />
     <Compile Include="Data\DAODato.cs" />
@@ -149,11 +150,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\pace-theme-flash.css" />
-    <Content Include="Content\site1.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="imagenes\logo.png" />
     <Content Include="imagenes\logoPagina.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -165,12 +165,14 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\pace.min.js" />
+    <Content Include="Views\HtmlTemplates\HPRespuestaPedido.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -179,16 +181,16 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Datos\Index.cshtml" />
     <Content Include="Views\Datos\Consultora.cshtml" />
     <Content Include="Views\Datos\Confirmacion.cshtml" />
     <Content Include="Views\DatosEmail\Index.cshtml" />
     <Content Include="Views\DatosEmail\Email.cshtml" />
-    <Content Include="Views\Shared\_Master01.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\DatosEmail\Final.cshtml" />
+    <Content Include="Views\FinalDatos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

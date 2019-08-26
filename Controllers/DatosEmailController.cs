@@ -14,30 +14,49 @@ namespace ActualizacionDatosCampaña.Controllers
         [HttpGet]
         public ActionResult Index(string id)
         {
-            string parametro = Convert.ToString(id);
-            String Clave = Encriptacion.Base64Decode(parametro);
-            string[] lista = Clave.Split(',');
-            DatoModel objModel = new DatoModel();
-            objModel.idDato = Convert.ToInt32(lista[0]);
 
-            //objModel.vchCodConsultora = Convert.ToString(lista[2]);
-            //objModel.idPromocion = Convert.ToInt32(lista[3]);
-
-            if (lista[1] == "1") //SMS
+            try
             {
-                objModel.TipoEnvio = 1;
-                objModel.bitConfirmadoSMS = true;
-                objModel.dtmFechaConfirmadoSMS = DateTime.Now;
-                objModel.vchEstado = "2";
 
-                DAODato.Update(objModel);
-                //ViewBag.Texto = Helper.TextoBD("MENSAJE_CONFIRMACION_SMS");
+
+
+                string parametro = Convert.ToString(id);
+                String Clave = Encriptacion.Base64Decode(parametro);
+                string[] lista = Clave.Split(',');
+                DatoModel objModel = new DatoModel();
+                objModel.intDato = Convert.ToInt32(lista[0]);
+
+                //objModel.vchCodConsultora = Convert.ToString(lista[2]);
+                //objModel.idPromocion = Convert.ToInt32(lista[3]);
+
+                if (lista[1] == "1") //SMS
+                {
+                    objModel.TipoEnvio = 1;
+                    objModel.bitConfirmadoSMS = true;
+                    objModel.dtmFechaConfirmadoSMS = DateTime.Now;
+                    objModel.vchEstado = "2";
+
+                    DAODato.Update(objModel);
+    
+                }
+
+                HttpCookie cookie = new HttpCookie("Cookie");
+                cookie.Value = objModel.intDato.ToString();
+
+                this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+
+            }
+            catch (Exception ex)
+            {
+
+                // throw ex;
+                return View("Error", new HandleErrorInfo(ex, "EmployeeInfo", "Create"));
             }
 
             return View();
         }
         [HttpPost]
-        public ActionResult Index(FormCollection formCollection)
+        public ActionResult Index()
         {
 
 
@@ -47,11 +66,43 @@ namespace ActualizacionDatosCampaña.Controllers
         [HttpGet]
         public ActionResult Email()
         {
-            return View();
+            DatoModel objModel = new DatoModel();
+
+            return View(objModel);
         }
         [HttpPost]
-        public ActionResult Email(FormCollection formCollection)
+        public ActionResult Email(DatoModel objModel)
         {
+
+
+            if (objModel.vchEmail != null)
+            {
+              
+
+                if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
+                {
+                    objModel.intDato = Convert.ToInt32(this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value);
+                    
+                }
+
+                objModel.TipoEnvio = 2;
+                objModel.bitConfirmadoEmail = true;
+                objModel.dtmFechaConfirmadoEmail = DateTime.Now;
+                objModel.vchEncriptadoEmail = Encriptacion.Base64Encode(objModel.intDato + "," + "2" );
+                objModel.vchEstado = "3";
+                DAODato.Update(objModel);
+
+
+                objModel.vchRuta = Server.MapPath("~/Views/HtmlTemplates/HPRespuestaPedido.html");
+                Helper.EnvioEmail(objModel);
+            }
+
+            return View("Final");
+        }
+        [HttpGet]
+        public ActionResult Final()
+        {
+            
             return View();
         }
     }

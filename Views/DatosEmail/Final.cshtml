@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Final";
+    Layout = "~/Views/Shared/_Master.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Final", "DatosEmail", FormMethod.Post, new { @class = "theme-form" }))
+{
+    <div class="texto">
+        <h4>Gracias</h4>
+
+    </div>
+
+    <div class="team">
+
+        <h6> Te hemos enviado un Email. Haz click en el <ins>link</ins> para que puedas acceder al beneficio.</h6>
+    </div>
+
+}

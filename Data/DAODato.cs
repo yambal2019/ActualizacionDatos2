@@ -17,7 +17,7 @@ namespace ActualizacionDatosCampaña.Data
 
             updateCommand.CommandType = CommandType.StoredProcedure;
 
-            updateCommand.Parameters.AddWithValue("@idDato", TBDato.idDato);
+            updateCommand.Parameters.AddWithValue("@idDato", TBDato.intDato);
 
 
             if (TBDato.bitConfirmadoSMS.HasValue == true)
@@ -37,7 +37,7 @@ namespace ActualizacionDatosCampaña.Data
             {
                 updateCommand.Parameters.AddWithValue("@dtmFechaConfirmadoSMS", DBNull.Value);
             }
-
+            //==========================================================================================
             if (TBDato.bitConfirmadoEmail.HasValue == true)
             {
                 updateCommand.Parameters.AddWithValue("@bitConfirmadoEmail", TBDato.bitConfirmadoEmail);
@@ -56,7 +56,9 @@ namespace ActualizacionDatosCampaña.Data
                 updateCommand.Parameters.AddWithValue("@dtmFechaConfirmadoEmail", DBNull.Value);
             }
 
-            
+            //==========================================================================================
+
+            updateCommand.Parameters.AddWithValue("@vchEstado", TBDato.vchEstado);
 
             updateCommand.Parameters.AddWithValue("@idTipo", TBDato.TipoEnvio);
 

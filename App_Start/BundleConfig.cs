@@ -20,11 +20,11 @@ namespace ActualizacionDatosCampaña
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/pace.min.js", "~/Scripts/bootstrap.js"));
+                      "~/Scripts/pace.min.js", "~/Scripts/bootstrap.js","~/Scripts/jquery.inputmask.bundle.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/pace-theme-flash.css",
                       "~/Content/bootstrap.min.css",
-                      "~/Content/site1.css"));
+                      "~/Content/Site.css"));
         }
     }
 }

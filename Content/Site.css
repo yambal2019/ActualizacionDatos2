@@ -25891,13 +25891,13 @@ footer {
         margin-bottom: 1rem
     }
 
-.register-page h3 {
+/*.register-page h3 {
     margin-bottom: 20px;
     text-transform: uppercase;
     color: #222;
     font-weight: 700;
     margin-top: -4px
-}
+}*/
 
 .register-page .theme-card {
     padding: 30px;
@@ -37604,6 +37604,7 @@ footer.footer-5 {
     margin-bottom: 10px;
     font-size: 23px;
     text-align: center;
+    margin-bottom:10px;
 }
 
 .main-menu .brand-logo {
@@ -37615,4 +37616,21 @@ footer.footer-5 {
 .submit {
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.center-align {
+    text-align: center;
+}
+
+    .center-align h4 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+.register-page h3 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    /*text-transform: uppercase;*/
+    color: #222;
+    font-weight: 300;
 }

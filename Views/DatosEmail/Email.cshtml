@@ -1,20 +1,24 @@
 ﻿
+@model ActualizacionDatosCampaña.Models.DatoModel
+
 @{
     ViewBag.Title = "Email";
     Layout = "~/Views/Shared/_Master.cshtml";
 }
 
 
-@using (Html.BeginForm("Email", "DatosEmail", FormMethod.Post))
+@using (Html.BeginForm("Email", "DatosEmail", FormMethod.Post, new { @class = "theme-form" }))
 {
 
     <div class="texto">
-        <h4> ¿Lista para seguir ganando ?</h4>
+        <h4> ¿Lista para seguir ganando? </h4>
     </div>
-    <input type="text" name="vchEmail" id="vchEmail" class="form-control" placeholder="Ingresa tu email" />
 
-    <p class="submit">
+    <input type="text" name="vchEmail" id="vchEmail" class="form-control" placeholder="Ingresa tu email" />
+    @Html.ValidationMessageFor(model => model.vchEmail)
+
+    <div class="">
         <input type="submit" name="wp-submit" id="btnsubmit" class="btn btn-primary btn-border" value="Enviar..." />
-    </p>
+    </div>
 }
 

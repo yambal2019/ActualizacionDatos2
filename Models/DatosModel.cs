@@ -18,6 +18,11 @@ namespace ActualizacionDatosCampaña.Models
         }
 
 
+        public Int32 intDato
+        {
+            get; set;
+        }
+
         public Int32 TipoEnvio
         {
             get; set;
@@ -63,18 +68,18 @@ namespace ActualizacionDatosCampaña.Models
         }
 
         public DateTime? dtmFechaConfirmadoEmail { get; set; }
-  
+
         public String vchCodConsultora { get; set; }
-       
+
         public string vchEstado { get; set; }
-       
+
         public Int32? idPromocion { get; set; }
-        
+
         public string vchNombre { get; set; }
-      
+
         public string vchEncriptadoSMS { get; set; }
         public string vchEncriptadoEmail { get; set; }
-        
+
         public string vchRuta { get; set; }
         public Boolean bitEnviadoSMS { get; set; }
         public DateTime dtmFechaEnvioSMS { get; set; }

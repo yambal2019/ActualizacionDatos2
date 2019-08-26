@@ -68,7 +68,7 @@ namespace ActualizacionDatosCampaña.Controllers
         [HttpPost]
         public async Task<ActionResult> Consultora(DatoModel modelo)
         {
-            if (modelo.vchTelefono != null && modelo.vchTelefono.Length == 9)
+            if (modelo.vchTelefono != null && modelo.vchTelefono.Length == 11)
             {
                 DatoModel objDatoModel = new DatoModel();
                 try
