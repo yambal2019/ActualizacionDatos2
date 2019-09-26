@@ -1,38 +1,111 @@
-﻿@model ActualizacionDatosCampaña.Models.DatoModel
+﻿@model ActualizacionDatosCampaña.Models.ConsultoraModel
 @{
     ViewBag.Title = "Datos";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
 }
 
 
+    <div class="container Pantalla2 Borde">
+        <div class="row bordePagina2">
 
-        @using (Html.BeginForm("Consultora", "Datos", FormMethod.Post, new { @class = "theme-form" }))
-        {
-
-            <div class="dashboard">
-                <div class="box-head">
-                    <h2>  Hola, @Model.vchNombre </h2>
+            <div class="col-lg-4 col-md-4 pantalla2Panel1">
+                <div>
+                    <img src="~/imagenes/web/1Naranja.png" class="imageIcono" />
                 </div>
-
             </div>
 
-            <div class="texto">
-                <h4> comencemos... </h4>
-            </div>
-            <input type="text" name="vchTelefono" id="vchTelefono" class="form-control" placeholder="Ingresa tu número celular" />
+            <div class="col-lg-4 col-md-4 col-sm-12 espacio150">
 
-            <div class="submit">
-                <input type="submit" name="wp-submit" id="btnsubmit" class="btn btn-primary btn-border" value="Enviar..." />
-            </div>
 
-        }
+                @using (Html.BeginForm("Consultora", "Datos", FormMethod.Post, new { @class = "theme-form" }))
+                {
+                        <div class="centrarImportante">
+                            <div class="ancho1">
+                                <div class="izquierda">
+                                    <div class="col-12">
+                                        <img src="~/imagenes/icono.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fondo">
+                                <div class="content-body contenidoNaranja">
+                                    <div class="row margen centrar">
+                                        <div class="col-md-12">
+                                            <label class="form-label fuente1 fuenteMob1">Hola, @Model.vchNombre</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="row margen centrar">
+                                        <div class="col-md-12">
+                                            <label class="form-label "><h2 class="fuenteMenosOcuro200">¡Comencemos!</h2></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="row margen centrar">
+                                        <div class="col-md-12 LeftRight30">
+                                            <div class="form-group">
+                                                <div class="controls">
+                                                    <input type="text" name="vchTelefono" id="vchTelefono" class="form-control caja" style="border-color: #FDB45C">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row centrar">
+                                        <div class="col-md-12">
+                                            <div class="">
+                                                <label class="form-label fuente1 fuenteMob2">Ingresa tu número de celular</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row centrar">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                @Html.ValidationSummary(false, "", new { @class = "colorError" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row bajar">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="submit">
+                                                    <input type="submit" name="wp-submit" id="btnsubmit" class="boton btn btn-block" value="ENVIAR" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+               
+
+                }
+
+
+            </div>
+            <div class="col-lg-4 col-md-4 pantalla2Panel2">
+
+
+            </div>
+        </div>
+
+    </div>
+
+
 
 
 @section scripts{
-    <script type="text/javascript" >
+    <script type="text/javascript">
         $(function () {
-               $("#vchTelefono").inputmask({ "mask": "999-999-999" });
+             $("#vchTelefono").inputmask({ "mask": "999-999-999" });           
+             $("#vchTelefono").focus();
         });
+        
+           
     </script>
 }
 

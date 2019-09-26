@@ -21,10 +21,13 @@ namespace ActualizacionDatosCampaña.Controllers
 
 
                 string parametro = Convert.ToString(id);
+
+                parametro = parametro.Substring(0, parametro.Length - 1);
+
                 String Clave = Encriptacion.Base64Decode(parametro);
                 string[] lista = Clave.Split(',');
                 DatoModel objModel = new DatoModel();
-                objModel.intDato = Convert.ToInt32(lista[0]);
+                objModel.idDato = Convert.ToInt32(lista[0]);
 
                 //objModel.vchCodConsultora = Convert.ToString(lista[2]);
                 //objModel.idPromocion = Convert.ToInt32(lista[3]);
@@ -41,7 +44,7 @@ namespace ActualizacionDatosCampaña.Controllers
                 }
 
                 HttpCookie cookie = new HttpCookie("Cookie");
-                cookie.Value = objModel.intDato.ToString();
+                cookie.Value = objModel.idDato.ToString();
 
                 this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
@@ -50,7 +53,7 @@ namespace ActualizacionDatosCampaña.Controllers
             {
 
                 // throw ex;
-                return View("Error", new HandleErrorInfo(ex, "EmployeeInfo", "Create"));
+                return View("Error", new HandleErrorInfo(ex, "DatosEmail", "Index"));
             }
 
             return View();
@@ -81,14 +84,14 @@ namespace ActualizacionDatosCampaña.Controllers
 
                 if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie"))
                 {
-                    objModel.intDato = Convert.ToInt32(this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value);
+                    objModel.idDato = Convert.ToInt32(this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value);
                     
                 }
 
                 objModel.TipoEnvio = 2;
                 objModel.bitConfirmadoEmail = true;
                 objModel.dtmFechaConfirmadoEmail = DateTime.Now;
-                objModel.vchEncriptadoEmail = Encriptacion.Base64Encode(objModel.intDato + "," + "2" );
+                objModel.vchEncriptadoEmail = Encriptacion.Base64Encode(objModel.idDato + "," + "2" ) + "a";
                 objModel.vchEstado = "3";
                 DAODato.Update(objModel);
 

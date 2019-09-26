@@ -2,23 +2,146 @@
 @model ActualizacionDatosCampaña.Models.DatoModel
 
 @{
-    ViewBag.Title = "Email";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewBag.Title = "EMAIL";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
+}
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
 }
 
 
-@using (Html.BeginForm("Email", "DatosEmail", FormMethod.Post, new { @class = "theme-form" }))
+@using (Html.BeginForm("Email", "DatosEmail", FormMethod.Post, new { @class = "theme-form", @id = "frmvalidacion" }))
 {
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 
-    <div class="texto">
-        <h4> ¿Lista para seguir ganando? </h4>
+    <div class="Pantalla5">
+        <div class="container">
+            <div class="row bordePagina2">
+                <div class="col-lg-3 col-md-3 pantalla2Panel1">
+                    <div>
+                        <img src="~/imagenes/web/1Naranja.png" class="imageIcono" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pantalla2Panel2">
+
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 imgFondo">
+                    <main role="main" class="textoBlanco">
+                        <section class="text-center cuadro bajar60 espacio150">
+                            <div class="">
+                                <div class="row margen izquierda iconoNaranja">
+                                    <div class="col-md-12">
+                                        <img src="~/imagenes/regalo_naranja.png" />
+                                    </div>
+                                </div>
+                                <div class="row margen izquierda iconoBlanco">
+                                    <div class="col-md-12">
+                                        <img src="~/imagenes/regalo.png" />
+                                    </div>
+                                </div>
+                                <div class="row margen centrar">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                <h3>
+                                                    ¡Sigue actualizando para GANAR!
+                                                </h3>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-12">
+                                        <div class="form-group LeftRight30">
+
+                                            <div class="controls">
+                                                @Html.TextBox("vchEmail", null, new { @class = "form-control" })
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row margen centrar">
+
+                                    <div class="col-md-12">
+                                        <label class="form-label "><h5 class="fuenteMasOcuro">Ingresa tu correo electrónico</h5></label>
+                                        <div class="form-group">
+
+                                            <div class="Error" id="Error">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row margen centrar ">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="submit">
+                                                <input type="submit" name="wp-submit" id="btnsubmit" class="boton btn" value="ENVIAR" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </main>
+
+
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
-    <input type="text" name="vchEmail" id="vchEmail" class="form-control" placeholder="Ingresa tu email" />
-    @Html.ValidationMessageFor(model => model.vchEmail)
+    @section scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-    <div class="">
-        <input type="submit" name="wp-submit" id="btnsubmit" class="btn btn-primary btn-border" value="Enviar..." />
-    </div>
+                 $("#vchEmail").focus();
+
+                //var mailformat = /^\w+([\.-]?\w+)*@@{1}(hotmail.com|gmail.com|yahoo.com|yahoo.es|outlook.com|pucp.pe|pucp.edu.pe|tespro.com.pe|hotmail.es|unique-yanbal.com)+$/;
+                var mailformat = /^\w+([\.-]?\w+)*@@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                jQuery.validator.addMethod("formato", function (value, element) {
+                    return this.optional(element) || mailformat.test(value)
+                }, "Error formato");
+
+                $("#frmvalidacion").validate({
+
+                    errorLabelContainer: "#Error",
+                    submitHandler: function () {
+                        document.getElementById("frmvalidacion").submit();
+                    },
+                    rules: {
+
+                        vchEmail: {
+                            formato: true,
+                            required: true,
+                            email: true
+
+                        }
+
+                    },
+                    messages: {
+
+                        vchEmail: { formato: "* Formato de correo incorrecto. ", required: "* Ingrese un correo", email: "* Formato de correo incorrecto." }
+
+                    }
+
+                });
+            });
+
+
+        </script>
+    }
+
 }
+
 

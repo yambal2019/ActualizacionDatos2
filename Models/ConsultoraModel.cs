@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ActualizacionDatosCampaña.Models
 {
@@ -25,6 +27,22 @@ namespace ActualizacionDatosCampaña.Models
         public String texto { get; set; }
         public Int32 Exito { get; set; }
         //++++++++++++++++++++++++++++++++++++++++++++++++++
+        public String vchTipoCanal { get; set; }
 
+        //++++++++++++++++++++++++++++++++++++++++++++++++++
+        public String vchEmailAntiguo { get; set; }
+        public String vchTelefonoAntiguo { get; set; }
+        //++++++++++++++++++++++++++++++++++++++++++++++++++
+        public SelectList ListaTipoDocumento { get; set; }
+
+        [Required(ErrorMessage = "* Seleccione el Tipo de Documento")]
+        public Int32 TipoDocumentoId { get; set; }
     }
+
+    public class TipoDocumentoModel
+    {
+        public Int32 intTipoDocumento { get; set; }
+        public String vchDocumento { get; set; }
+    }
+
 }

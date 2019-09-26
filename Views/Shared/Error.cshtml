@@ -1,14 +1,133 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta charset="utf-8" />
+    <title>Actualización de Datos Unique</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <style>
+        #topbar {
+            height: 82px;
+            position: relative;
+        }
+
+        .panelnaranja {
+            background-color: #ff6900;
+            padding-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        .siteContainer {
+            max-width: 960px;
+            margin: 0 auto;
+            min-width: 320px;
+        }
+
+        .bajar10 {
+            padding-top: 15px;
+        }
+
+        .patop40pabo {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .page_error_info {
+            display: block;
+            font-size: 25px;
+            line-height: 40px;
+            color: #aaaaaa;
+            font-weight: 400;
+            padding: 20px 0px;
+            width: 480px;
+            max-width: 100%;
+            margin: 0 auto;
+            margin-bottom: 40px;
+            margin-top:20px;
+        }
+
+        .page_error_code {
+            color: #ff6900 !important;
+            text-align: center;
+            display: block;
+            width: 100%;
+            font-size: 40px;
+            line-height: 50px;
+            font-weight: 400;
+            margin: 10px 0 0 0;
+        }
+
+        .btn.btn-lg, .btn-lg, .btn-group-lg > .btn {
+            padding: 10px 21px;
+        }
+
+        body {
+            background-color: #f1f2f7;
+            color: rgba(118, 118, 118, 1.0);
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            padding: 0px !important;
+            margin: 0px !important;
+            line-height: 23px;
+            font-style: normal;
+            font-weight: normal;
+            min-height: 100%;
+        }
+    </style>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="ActualizacionDatos/fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>Error al procesar la solicitud.</h2>
-    </hgroup>
+
+    @model System.Web.Mvc.HandleErrorInfo
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="patop40pabo">
+                    <a href="/multikart/home/one">
+                        <img alt="" class="img-fluid" src="~/imagenes/logo.png">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="panelnaranja">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <h1 class="page_error_code text-primary">MENSAJE</h1>
+            <div class="">
+
+
+                <h1 class="page_error_info">Ocurrió un error inesperado, vuelva a la página de inicio. Si continúa el inconveniente, por favor comunícate con Servicio al Cliente.</h1>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-8 col-md-offset-3 col-sm-offset-3 col-xs-offset-2">
+
+                <div class="text-center page_error_btn">
+                    <a class="btn btn-primary btn-lg" href=@Url.Action("Index", "Datos") target="_self"><i class="fa fa-location-arrow"></i> &nbsp; Regresar al pagina de inicio.</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>

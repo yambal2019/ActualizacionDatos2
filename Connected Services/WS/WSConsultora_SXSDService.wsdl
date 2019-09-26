@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns3="http://to.ccnsjsxsxsd.ws.corp.yanbal.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://to.comunsxsd.ws.corp.yanbal.com" xmlns:tns2="http://to.entity.ws.corp.yanbal.com" xmlns:tns4="http://to.rcreconsf.ws.corp.yanbal.com" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns="http://servicesxsd.cns.ws.corp.yanbal.com" targetNamespace="http://servicesxsd.cns.ws.corp.yanbal.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://to.comunsxsd.ws.corp.yanbal.com">
+      <xsd:complexType name="Cabecera">
+        <xsd:sequence>
+          <xsd:element name="codigoInterfaz" nillable="true" type="xsd:string" />
+          <xsd:element name="usuarioAplicacion" nillable="true" type="xsd:string" />
+          <xsd:element name="codigoAplicacion" nillable="true" type="xsd:string" />
+          <xsd:element name="codigoPais" nillable="true" type="xsd:string" />
+          <xsd:element name="codigosPaisOD" nillable="true" type="tns:CodigosPaisODType" />
+          <xsd:element name="idTransaccion" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodigoPaisODType">
+        <xsd:sequence>
+          <xsd:element name="valor" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="CodigosPaisODType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="codigoPaisOD" nillable="true" type="tns:CodigoPaisODType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Respuesta">
+        <xsd:sequence>
+          <xsd:element name="codigoRespuesta" nillable="true" type="xsd:string" />
+          <xsd:element name="mensajeRespuesta" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://to.ccnsjsxsxsd.ws.corp.yanbal.com">
+      <xsd:import namespace="http://to.comunsxsd.ws.corp.yanbal.com" />
+      <xsd:complexType name="IntegracionWSReq">
+        <xsd:sequence>
+          <xsd:element name="cabecera" nillable="true" type="tns:Cabecera" />
+          <xsd:element name="detalle" nillable="true" type="tns3:Detalle" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Detalle">
+        <xsd:sequence>
+          <xsd:element name="consultoraReq" nillable="true" type="tns3:ConsultarConsultoraJSXEnvType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarConsultoraJSXEnvType">
+        <xsd:sequence>
+          <xsd:element name="tipoBusqueda" nillable="true" type="xsd:string" />
+          <xsd:element name="codBusqueda" nillable="true" type="xsd:string" />
+          <xsd:element name="apePaterno" nillable="true" type="xsd:string" />
+          <xsd:element name="apeMaterno" nillable="true" type="xsd:string" />
+          <xsd:element name="nombres" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IntegracionWSResp">
+        <xsd:sequence>
+          <xsd:element name="cabecera" nillable="true" type="tns:Cabecera" />
+          <xsd:element name="detalle" nillable="true" type="tns3:DetalleSalida" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DetalleSalida">
+        <xsd:sequence>
+          <xsd:element name="respuesta" nillable="true" type="tns:Respuesta" />
+          <xsd:element name="datos" nillable="true" type="tns3:ConsultarConsultoraJSXRtaType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultarConsultoraJSXRtaType">
+        <xsd:sequence>
+          <xsd:element name="consultoras" nillable="true" type="tns3:ConsultoraArrType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultoraArrType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="consultora" nillable="true" type="tns3:ConsultoraJSXRtaType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ConsultoraJSXRtaType">
+        <xsd:sequence>
+          <xsd:element name="codConsultora" nillable="true" type="xsd:string" />
+          <xsd:element name="nombreCompleto" nillable="true" type="xsd:string" />
+          <xsd:element name="nombres" nillable="true" type="xsd:string" />
+          <xsd:element name="apePaterno" nillable="true" type="xsd:string" />
+          <xsd:element name="apeMaterno" nillable="true" type="xsd:string" />
+          <xsd:element name="sexo" nillable="true" type="xsd:string" />
+          <xsd:element name="cultura" nillable="true" type="xsd:string" />
+          <xsd:element name="codTitulo" nillable="true" type="xsd:string" />
+          <xsd:element name="titulo" nillable="true" type="xsd:string" />
+          <xsd:element name="ranking" nillable="true" type="xsd:int" />
+          <xsd:element name="codDirectora" nillable="true" type="xsd:string" />
+          <xsd:element name="nombreDirectora" nillable="true" type="xsd:string" />
+          <xsd:element name="codEjecutivaServicios" nillable="true" type="xsd:string" />
+          <xsd:element name="servicioEjecutivo" nillable="true" type="xsd:string" />
+          <xsd:element name="coordinadorVentas" nillable="true" type="xsd:string" />
+          <xsd:element name="email" nillable="true" type="xsd:string" />
+          <xsd:element name="direccionPersonal" nillable="true" type="tns3:DireccionCompletaType" />
+          <xsd:element name="direccionEnvio" nillable="true" type="tns3:DireccionCompletaType" />
+          <xsd:element name="idTipoDocumentoIdentidad" nillable="true" type="xsd:integer" />
+          <xsd:element name="tipoDocumentoIdentidad" nillable="true" type="xsd:string" />
+          <xsd:element name="nroDocumentoIdentidad" nillable="true" type="xsd:string" />
+          <xsd:element name="telefonoCasa" nillable="true" type="xsd:string" />
+          <xsd:element name="telefonoMovil" nillable="true" type="xsd:string" />
+          <xsd:element name="telefonoTrabajo" nillable="true" type="xsd:string" />
+          <xsd:element name="fechaNacimiento" nillable="true" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DireccionCompletaType">
+        <xsd:sequence>
+          <xsd:element name="direccion" nillable="true" type="xsd:string" />
+          <xsd:element name="estadoProvincia" nillable="true" type="xsd:string" />
+          <xsd:element name="ciudad" nillable="true" type="xsd:string" />
+          <xsd:element name="barrioDistrito" nillable="true" type="xsd:string" />
+          <xsd:element name="codZona" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://to.rcreconsf.ws.corp.yanbal.com">
+      <xsd:import namespace="http://to.comunsxsd.ws.corp.yanbal.com" />
+      <xsd:complexType name="IntegracionWSReq">
+        <xsd:sequence>
+          <xsd:element name="cabecera" nillable="true" type="tns:Cabecera" />
+          <xsd:element name="detalle" nillable="true" type="tns4:Detalle" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Detalle">
+        <xsd:sequence>
+          <xsd:element name="crearContactoReq" nillable="true" type="tns4:crearContactoReqType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="crearContactoReqType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="configuracion" nillable="true" type="tns4:configuracionType" />
+          <xsd:element minOccurs="0" name="datos" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="configuracionType">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="cntRegistros" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="numBloque" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" name="numTotBloques" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="IntegracionWSResp">
+        <xsd:sequence>
+          <xsd:element name="cabecera" nillable="true" type="tns:Cabecera" />
+          <xsd:element name="detalle" nillable="true" type="tns4:DetalleSalida" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DetalleSalida">
+        <xsd:sequence>
+          <xsd:element name="respuesta" nillable="true" type="tns:Respuesta" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://servicesxsd.cns.ws.corp.yanbal.com">
+      <xsd:import namespace="http://to.rcreconsf.ws.corp.yanbal.com" />
+      <xsd:import namespace="http://to.ccnsjsxsxsd.ws.corp.yanbal.com" />
+      <xsd:element name="consultarCNSXCodigoRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="integracionWSReq" nillable="true" type="tns3:IntegracionWSReq" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="consultarCNSXCodigoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="integracionWSResp" nillable="true" type="tns3:IntegracionWSResp" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="crearContactoRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="integracionWSReq" nillable="true" type="tns4:IntegracionWSReq" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="crearContactoResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="integracionWSResp" nillable="true" type="tns4:IntegracionWSResp" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="consultarCNS_in">
+    <wsdl:part name="parameters" element="consultarCNSXCodigoRequest" />
+  </wsdl:message>
+  <wsdl:message name="consultarCNS_out">
+    <wsdl:part name="parameters" element="consultarCNSXCodigoResponse" />
+  </wsdl:message>
+  <wsdl:message name="crearContactoResponse">
+    <wsdl:part name="parameters" element="crearContactoResponse" />
+  </wsdl:message>
+  <wsdl:message name="crearContactoRequest">
+    <wsdl:part name="parameters" element="crearContactoRequest" />
+  </wsdl:message>
+  <wsdl:portType name="WSConsultora_SXSDImpl">
+    <wsdl:operation name="consultarCNSXCodigo">
+      <wsdl:input message="consultarCNS_in" />
+      <wsdl:output message="consultarCNS_out" />
+    </wsdl:operation>
+    <wsdl:operation name="crearContacto">
+      <wsdl:input message="crearContactoRequest" />
+      <wsdl:output message="crearContactoResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSConsultora_SXSDSoapBinding" type="WSConsultora_SXSDImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="consultarCNSXCodigo">
+      <soap:operation soapAction="consultarCNS" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearContacto">
+      <soap:operation soapAction="crearContacto" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSConsultora_SXSDService">
+    <wsdl:port name="consultora" binding="WSConsultora_SXSDSoapBinding">
+      <soap:address location="https://serviciosit.unique-yanbal.com/integracion/WSCNSWeb/WSConsultora_SXSDService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

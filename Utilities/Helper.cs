@@ -104,9 +104,9 @@ namespace ActualizacionDatosCampaña.Utilities
             body = body.Replace("{Mensaje_Cuerpo_Email}", objListaParametro[4].vchValor);
           
             body = body.Replace("{Email}", objModel.vchEmail);
-            body = body.Replace("{Link}", Helper.TextoBD("EMAIL_LINK") + objModel.vchEncriptadoEmail);
+            body = body.Replace("{Link}",  Helper.TextoBD("EMAIL_LINK") + objModel.vchEncriptadoEmail);
 
-
+            objModel.vchLink = Helper.TextoBD("EMAIL_LINK") + objModel.vchEncriptadoEmail;
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(objListaParametro[0].vchValor);
@@ -118,8 +118,6 @@ namespace ActualizacionDatosCampaña.Utilities
             request.Add(new StringContent(objListaParametro[2].vchValor), "from");
             request.Add(new StringContent(objModel.vchEmail), "to");
             request.Add(new StringContent(objListaParametro[3].vchValor), "subject");
-           // request.Add(new StringContent("Rich HTML message body."), "text");
-            //request.Add(new StringContent("<h1>Html body</h1><p>Rich HTML message body.</p>" + "www.unique.com/datos/consultora?" + objModel.vchEncriptadoEmail), "html");
             request.Add(new StringContent(body), "html");
 
 
@@ -127,7 +125,10 @@ namespace ActualizacionDatosCampaña.Utilities
             var response = client.PostAsync("email/1/send", request).Result;
             if (response.IsSuccessStatusCode)
             {
+                DAODato.AddLink(objModel, 2);
                 return 1;
+               
+
                 //var responseContent = response.Content;
                 //string responseString = responseContent.ReadAsStringAsync().Result;
                 ////Console.WriteLine(responseString);
@@ -165,7 +166,11 @@ namespace ActualizacionDatosCampaña.Utilities
             string TO = "+51" + objModel.vchTelefono;
             List<string> TO_LIST = new List<string>(1) { "PHONE" };
 
-            string MESSAGE_TEXT = objListaParametro[3].vchValor + "  " + DateTime.Now.ToString() + " " + Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS;
+            //  string MESSAGE_TEXT = objListaParametro[3].vchValor + "  " + DateTime.Now.ToString() + " " + Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS;
+            string texto = objListaParametro[3].vchValor;
+            string MESSAGE_TEXT = texto.Replace("@", Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS);
+
+            objModel.vchLink = Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS;
 
             SendMultipleTextualSmsAdvanced smsClient = new SendMultipleTextualSmsAdvanced(BASIC_AUTH_CONFIGURATION);
 
@@ -191,6 +196,7 @@ namespace ActualizacionDatosCampaña.Utilities
             SMSResponse smsResponse = await smsClient.ExecuteAsync(request);
             SMSResponseDetails sentMessageInfo = smsResponse.Messages[0];
 
+            DAODato.AddLink(objModel,1);
             //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 

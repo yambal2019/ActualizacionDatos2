@@ -16,10 +16,13 @@ namespace ActualizacionDatosCampaña.Controllers
         public ActionResult Index(string id)
         {
             string parametro = Convert.ToString(id);
+           
+            parametro = parametro.Substring(0, parametro.Length - 1);
+
             String Clave = Encriptacion.Base64Decode(parametro);
             string[] lista = Clave.Split(',');
             DatoModel objModel = new DatoModel();
-            objModel.intDato = Convert.ToInt32(lista[0]);
+            objModel.idDato = Convert.ToInt32(lista[0]);
 
             if (lista[1] == "2") //Email
             {
@@ -29,9 +32,9 @@ namespace ActualizacionDatosCampaña.Controllers
                 objModel.vchEstado = "4";
 
                 DAODato.Update(objModel);
-                
+
             }
-            return View();
+            return View("Index");
         }
     }
 }

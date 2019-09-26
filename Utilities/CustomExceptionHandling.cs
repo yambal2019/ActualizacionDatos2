@@ -16,8 +16,10 @@ namespace ActualizacionDatosCampaña.Utilities
                 string controllerName = (string)exceptionContext.RouteData.Values["controller"];
                 string actionName = (string)exceptionContext.RouteData.Values["action"];
 
-                Exception custException = new Exception("There is some error");
+            //    Exception custException = new Exception("There is some error");
+                Exception custException = new Exception(exceptionContext.Exception.Message);
 
+                Log.Error(exceptionContext.Exception.Message + " in " + controllerName);
 
 
                 var model = new HandleErrorInfo(custException, controllerName, actionName);

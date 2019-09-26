@@ -1,0 +1,401 @@
+﻿
+@model ActualizacionDatosCampaña.Models.DatoModel
+
+@{
+    Layout = null;
+
+    if (Session["UserId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+<style>
+    .badge {
+        font-size: 12px;
+        line-height: 1;
+        padding: .375rem .5625rem;
+        font-weight: 700;
+    }
+
+    .badge-danger {
+        color: #fff;
+        background-color: #ff5e5e;
+    }
+
+    .badge-success {
+        color: #212529;
+        background-color: #6fd96f;
+    }
+
+    .view {
+        color: #0056b3 !important;
+        text-decoration: underline;
+    }
+
+    .tamanio {
+        font-size: 13px;
+    }
+    }
+</style>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+
+    <style>
+
+        .footer2 {
+            background-color: white;
+            height: auto;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+        }
+
+        .panel-default {
+            border-color: #ff7810;
+        }
+
+            .panel-default > .panel-heading {
+                color: #ffffff;
+                background-color: #ff7810;
+                border-color: #ff7810;
+            }
+
+                .panel-default > .panel-heading + .panel-collapse .panel-body {
+                    border-top-color: #ff7810;
+                }
+
+            .panel-default > .panel-footer + .panel-collapse .panel-body {
+                border-bottom-color: #ff7810;
+            }
+        /*boton*/
+        .btn-default {
+            color: white;
+            background-color: #ff7810;
+            border-color: #ff7810;
+        }
+
+            .btn-default:hover,
+            .btn-default:focus,
+            .btn-default:active,
+            .btn-default.active,
+            .open .dropdown-toggle.btn-default {
+                color: white;
+                background-color: #ff7810;
+                border-color: #ff7810;
+            }
+
+            .btn-default:active,
+            .btn-default.active,
+            .open .dropdown-toggle.btn-default {
+                background-image: none;
+            }
+
+            .btn-default.disabled,
+            .btn-default[disabled],
+            fieldset[disabled] .btn-default,
+            .btn-default.disabled:hover,
+            .btn-default[disabled]:hover,
+            fieldset[disabled] .btn-default:hover,
+            .btn-default.disabled:focus,
+            .btn-default[disabled]:focus,
+            fieldset[disabled] .btn-default:focus,
+            .btn-default.disabled:active,
+            .btn-default[disabled]:active,
+            fieldset[disabled] .btn-default:active,
+            .btn-default.disabled.active,
+            .btn-default[disabled].active,
+            fieldset[disabled] .btn-default.active {
+                background-color: #ff7810;
+                border-color: white;
+            }
+    </style>
+
+</head>
+<body>
+
+    <div class="container body-content">
+        <div class="inicio">
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <section class="box ">
+                    <header class="panel_header">
+                        <h2 class="title pull-left">Reporte de Actualización de datos</h2>
+                        <div class="actions panel_actions pull-right">
+                            <i class="box_toggle fa fa-chevron-down"></i>
+                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
+                            <i class="box_close fa fa-times"></i>
+                        </div>
+                    </header>
+                    <div class="content-body">
+
+
+
+                        @using (Html.BeginForm("Index", "Reporte", FormMethod.Get, new { @class = "form" }))
+                        {
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                    <div class="form-group has-help">
+                                        <label class="form-label" for="field-13">Cod Consultora</label>
+                                        @Html.TextBox("vchCodConsultora", null, new { @class = "form-control input-sm myTextBox", id = "vchCodConsultora", autofocus = "autofocus" })
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group">
+                                        <button type="submit" id="enviar" class="btn btn-success submit">Buscar..</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        }
+                        @*</form>*@
+                    </div>
+                </section>
+            </div>
+
+
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <section class="box ">
+                    <header class="panel_header">
+                        <h2 class="title pull-left">Información de registro</h2>
+                        <div class="actions panel_actions pull-right">
+                            <i class="box_toggle fa fa-chevron-down"></i>
+                            <i class="box_setting fa fa-cog" data-toggle="modal" href="#section-settings"></i>
+                            <i class="box_close fa fa-times"></i>
+                        </div>
+                    </header>
+                    <div class="content-body">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+
+                                    @if (Model.Resultado.Count() > 0)
+                                    {
+
+                                        <table class="table table-bordered tamanio">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Id
+                                                    </th>
+                                                    <th>
+                                                        Telefono
+                                                    </th>
+                                                    <th>
+                                                        EnviadoSMS
+                                                    </th>
+
+                                                    <th>
+                                                        FechaEnvioSMS
+                                                    </th>
+                                                    <th>
+                                                        ConfirmadoSMS
+                                                    </th>
+                                                    <th>
+                                                        FechaConfirmadoSMS
+                                                    </th>
+
+                                                    <th>
+                                                        LinkSMS
+                                                    </th>
+                                                    <th>
+                                                        EnviadoEmail
+                                                    </th>
+                                                    <th>
+                                                        FechaEnviadoEmail
+                                                    </th>
+                                                    <th>
+                                                        ConfirmadoEmail
+                                                    </th>
+                                                    <th>
+                                                        FechaConfirmadoEmail
+                                                    </th>
+                                                    <th>
+                                                        LinkEmail
+                                                    </th>
+                                                    <th>
+                                                        Estado
+                                                    </th>
+                                                    <th>
+                                                        Terminos Condiciones
+                                                    </th>
+                                                    <th>
+                                                        Email Antiguo
+                                                    </th>
+                                                    <th>
+                                                        Telefono Antiguo
+                                                    </th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.Resultado)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.idDato)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.vchTelefono)
+                                                        </td>
+
+                                                        @if (@item.bitEnviadoSMS == true)
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-success">Enviado</div>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-danger">No Enviado</div>
+                                                            </td>
+                                                        }
+
+
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.dtmFechaEnvioSMS)
+                                                        </td>
+
+
+                                                        @if (@item.bitConfirmadoSMS == true)
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-success">Enviado</div>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-danger">No Enviado</div>
+                                                            </td>
+                                                        }
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.dtmFechaConfirmadoSMS)
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href=@item.vchLinkSMS class="view">link SMS</a>
+                                                        </td>
+
+                                                        @if (@item.bitEnviadoEmail == true)
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-success">Enviado</div>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-danger">No Enviado</div>
+                                                            </td>
+                                                        }
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.dtmFechaEnviadoEmail)
+                                                        </td>
+
+                                                        @if (@item.bitConfirmadoEmail == true)
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-success">Enviado</div>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-danger">No Enviado</div>
+                                                            </td>
+                                                        }
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.dtmFechaConfirmadoEmail)
+                                                        </td>
+
+                                                        <td>
+
+                                                            <a href=@item.vchLinkEmail class="view">link Email</a>
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.vchEstado)
+                                                        </td>
+
+                                                        @if (@item.bitTerminosCondiciones == true)
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-success">Acepto</div>
+                                                            </td>
+                                                        }
+                                                        else
+                                                        {
+                                                            <td>
+                                                                <div class="badge badge-danger">No Acepto</div>
+                                                            </td>
+                                                        }
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.vchEmailAntiguo)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.vchTelefonoAntiguo)
+                                                        </td>
+
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                    else
+                                    {
+                                        <span></span>
+                                        <div class="alert alert-default alert-dismissible" role="alert">
+
+                                            <strong>Info :</strong> No hay resultados para esta búsqueda.
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+           </div>
+    </div>
+
+</body>
+</html>
+
+
+

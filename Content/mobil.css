@@ -1,0 +1,643 @@
+
+
+/*@media only screen and (max-width: 479px) .breadcrumb-area {
+    background-position-x: 35%;
+    background-position-y: 100%;
+}
+
+@media only screen and (max-width: 575px) .breadcrumb-area {
+    background-position-x: 20%;
+    background-position-y: 100%;
+    height: 768px;
+}
+
+@media only screen and (max-width: 767px) .breadcrumb-area {
+    background-position-x: 10%;FinalDatos/Index/MTA0OCwy
+    background-position-y: 100%;
+    height: 100%;
+}*/
+
+
+/*html {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: visible;
+}*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+
+
+
+    .Pantalla7 .panel2ver {
+        display: none;
+    }
+
+    .Pantalla7 .margen {
+        margin-bottom: 10px;
+    }
+
+    .Pantalla7 .panel2 {
+        background-color: rgb(255,113,1);
+        color: white;
+        padding-bottom: 150px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+    }
+
+    .Pantalla7 .panel1 {
+        background-image: url(../imagenes/Fondo1.png);
+        background-position: 71% 22%;
+        color: rgb(255,113,1);
+       
+        border-radius: 8px;
+    }
+
+    .Pantalla7 .anchoPanel {
+        padding-bottom: 22%;
+        padding-top: 5%;
+    }
+
+
+    .Pantalla7 {
+        padding: 30px;
+        background-color: white;
+        /*border: 1px solid #e8e8e8;*/
+        border-top: 0px;
+        -webkit-transition: 800ms;
+        -moz-transition: 800ms;
+        -o-transition: 800ms;
+        transition: 800ms;
+    }
+
+    .Pantalla6 .ancho1 {
+        margin-top: 30px;
+        margin-bottom: 1rem;
+        padding-left: 50px;
+    }
+
+    .Pantalla6 .fondo {
+        background-color: rgb(255,113,1);
+    }
+
+    .Pantalla6 .contenidoNaranja {
+        background-color: rgb(255,113,1);
+        color: white;
+        text-align: left;
+    }
+
+    .Pantalla6 .bordePagina2 {
+        color: white;
+        background-color: rgb(255,113,1);
+    }
+
+
+    .Pantalla5 .boton:hover, .Pantalla5 .boton:active, .Pantalla5 .boton:focus,
+    .Pantalla1 .boton:hover, .Pantalla1 .boton:active, .Pantalla1 .boton:focus,
+    .Pantalla2 .boton:hover, .Pantalla2 .boton:active, .Pantalla2 .boton:focus,
+    .Pantalla4 .boton:hover, .Pantalla4 .boton:active, .Pantalla4 .boton:focus {
+        background: rgba(215, 113, 80, 1.0);
+        color: #ffffff;
+    }
+
+    .Pantalla5 .iconoNaranja {
+        display: none;
+    }
+
+    .Pantalla5 .btn {
+        color: rgb(255,113,1);
+        background-color: white;
+        text-decoration: none;
+    }
+    .Pantalla4 .top35 {
+        margin-top: 50px;
+    }
+
+    .Pantalla5 .margen {
+        margin-bottom: 15px;
+    }
+
+    .Pantalla5 .cuadro {
+        margin-bottom: 50px;
+        margin-top: 80px;
+        padding-bottom: 45px;
+        padding-top: 60px;
+        padding-left: 20px;
+        padding-right: 20px;
+        background-color: rgb(255,113,1);
+    }
+
+    .Pantalla5 .textoBlanco {
+        color: white;
+    }
+
+    .Pantalla4 .top35 {
+        margin-top: 75px;
+    }
+
+    .Pantalla4 .boton {
+        color: rgb(255,113,1);
+        background-color: white;
+        border-color: rgb(255,113,1);
+    }
+
+    .Pantalla4 .naranja {
+        background-color: rgb(255,113,1);
+        margin: 35px;
+    }
+
+
+    .Pantalla4 .espacio150 {
+        
+        margin-bottom: 55px;
+    }
+
+    .Pantalla4 .izquierda {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        text-align: left;
+    }
+
+    .Pantalla7 .izquierda {
+        padding-top: 20px;
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    .Pantalla4 .fondo {
+        background-color: rgb(255,113,1);
+        padding: 35px;
+        margin-bottom: 15px;
+        margin-top: 50px;
+        color: white;
+        padding-bottom: 139px;
+    }
+
+    .Pantalla4 .margenSuperior {
+        margin-top: 50px;
+    }
+ 
+      
+
+    .Pantalla3 .ancho1 {
+        margin-top: 30px;
+        margin-bottom: 1rem;
+        padding-left: 50px;
+    }
+
+ 
+
+    .Pantalla3 .fondo {
+        background-color: rgb(255,113,1);
+        padding-left: 130px;
+        padding-right: 130px;
+    }
+
+    .Pantalla3 .contenidoNaranja {
+        background-color: rgb(255,113,1);
+        color: white;
+        text-align: left;
+    }
+
+    .Pantalla3 .bordePagina2 {
+        color: white;
+        background-color: rgb(255,113,1);
+    }
+
+
+    .Pantalla2 .contenidoNaranja .boton {
+        background-color: white;
+        color: rgb(255,113,1);
+    }
+
+
+    .Pantalla1 .colorError li, .Pantalla2 .colorError li {
+        margin-left: -40px;
+    }
+
+    .Pantalla2 .imageIcono, .Pantalla4 .imageIcono, .Pantalla5 .imageIcono {
+        padding: 20px;
+    }
+
+    .Pantalla2 .fondo {
+        background-color: rgb(255,113,1);
+        padding: 60px;
+        margin-bottom: 20px;
+        margin-top: 100px;
+        color: white;
+        padding-top: 50px;
+        border-radius: 6px;
+        padding-bottom: 50px;
+    }
+
+    .Pantalla5 .LeftRight30 {
+        padding-left: 23%;
+        padding-right: 23%;
+    }
+
+    .Pantalla2 .naranja {
+        background-color: rgb(255,113,1);
+    }
+
+    .Pantalla2 .ancho1 {
+        display: none;
+    }
+
+    .Pantalla1 .izquierda {
+        text-align: left;
+    }
+
+
+    .Pantalla1 input {
+        border-color: #FDB45C;
+    }
+
+
+    .Pantalla1 a.nuevo {
+        color: rgb(255,113,1) !important;
+        text-decoration: underline;
+    }
+
+
+    .borde {
+        border-width: 20px;
+        border-style: solid;
+        border-color: rgb(250,236,231);
+        background-color: rgb(255,113,1);
+    }
+
+    .bordePagina2 {
+        border-width: 20px;
+        border-style: solid;
+        border-color: rgb(250,236,231);
+        background-color: white;
+    }
+
+    .ancho {
+        display: none;
+    }
+
+    .borrar .imageLogo {
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    .borrar .imageIcono {
+        margin-top: 50px;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .marge60 {
+        margin-bottom: 60px;
+    }
+
+    .Pantalla1 .fondo {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 50px;
+        margin-top: 160px;
+        color: rgb(255,113,1);
+    }
+
+    .centrar {
+        text-align: center;
+    }
+
+    .espacio150 {
+        margin-bottom: 115px;
+    }
+
+    .Pantalla1 .content-body {
+        padding-top: 40px;
+    }
+
+    .colorError ul {
+        list-style: none;
+    }
+
+    .footer .copyright-content {
+        min-height: 80px;
+        padding: 30px 0;
+        background-color: rgb(250,236,231);
+        font-size: 13px;
+        color: rgb(255,113,1);
+    }
+
+    .fuenteMasOcuro500 {
+        font-weight: 500;
+    }
+
+    .fuenteMenosOcuro200 {
+        font-weight: 200;
+    }
+
+    .fuente1 {
+        font-size: 1.3rem;
+    }
+
+    .fuenteTamanio2 {
+        font-size: 1.6rem;
+    }
+
+    .Pantalla2 .anchobtn {
+        padding-left: 58px;
+        padding-right: 58px;
+    }
+
+    .Pantalla2 .bajar {
+        padding-top: 40px
+    }
+
+    .btn-block {
+        display: block;
+        width: 100%;
+    }
+
+    .Pantalla3 .padbot30 {
+        padding-bottom: 180px;
+        padding-top: 180px;
+    }
+
+    .Pantalla6 .padbot30 {
+        padding-bottom: 50%;
+        padding-top: 40%;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+
+    .Pantalla4 .top35 {
+        margin-top: 40px;
+    }
+
+    .Pantalla4 .naranja {
+      
+        padding-bottom: 80px;
+    }
+
+    .fuenteMob1 {
+        font-size: 1.6rem;
+    }
+
+    .fuenteMob2 {
+        font-size: 1.3rem;
+    }
+    .Borde {
+        background-color: rgb(255,113,1);
+        border-style: solid;
+        border-width: 15px;
+        border-color: rgb(250,236,231);
+        color: rgb(255,113,1);
+    }
+
+    .Pantalla1 .ancho {
+        padding-top: 15px;
+        padding-bottom: 10px;
+    }
+   
+
+    .Pantalla5 .LeftRight30 {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .footer .copyright-content {
+        min-height: 30px;
+        padding: 10px 0;
+        background-color: #eff1f4;
+        font-size: 13px;
+    }
+
+    .Pantalla7 .panel1ver {
+        display: none;
+    }
+
+    .Pantalla7 {
+        background-color: rgb(255,113,1);
+        padding-bottom: 100px;
+
+    }
+
+        .Pantalla7 a.pantalla7 {
+            color: white;
+            text-decoration: underline;
+        }
+    
+
+
+    .Pantalla7 .izquierda {
+        margin: 20px;
+    }
+
+    .Pantalla5 .iconoBlanco {
+        display: none;
+    }
+
+    .Pantalla5 {
+        background-color: white;
+    }
+    .Pantalla5 .imgFondo {
+        background-image: url(../imagenes/fondo2.png);
+    }
+
+
+    .Pantalla5 .textoBlanco {
+        color: rgb(255,113,1);
+    
+    }
+
+    .Pantalla5 .espacio150 {
+        margin-bottom: 140px;
+    }
+
+    .Pantalla4 .izquierda {
+        padding-top: 50px;
+        text-align: left;
+    }
+    .Pantalla4 .imgFondo {
+        background-image:url(../imagenes/fondo-naranja.jpg);
+    }
+
+    .bajar60 {
+        padding-top: 60px;
+    }
+
+    .pantalla2Panel1 {
+        display: none;
+    }
+
+    .pantalla2Panel2 {
+        display: none;
+    }
+
+    .pantalla2maren15 {
+        margin-bottom: 15px;
+    }
+
+    .marge60 {
+        margin-bottom: 0px;
+    }
+
+    .borrar {
+        display: none;
+    }
+ 
+
+    .content-body {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 40px;
+        padding-bottom: 20px;
+        background-color: #ffffff;
+        -webkit-transition: 800ms;
+        -moz-transition: 800ms;
+        -o-transition: 800ms;
+        transition: 800ms;
+        border-radius: 6px;
+    }
+
+    .margen {
+        margin-bottom: 15px;
+    }
+
+    a.nuevo {
+        color: rgb(255,113,1) !important;
+        text-decoration: underline;
+    }
+
+
+    .boton {
+        color: #fff;
+        background-color: rgb(255,113,1);
+        border-color: rgb(255,113,1);
+    }
+
+    .boton:hover, .boton:active, .boton:focus {
+        background: rgba(215, 113, 80, 1.0);
+        color: #ffffff;
+    }
+
+    .Pantalla5 .boton:hover, .Pantalla5 .boton:active, .Pantalla5 .boton:focus {
+        background: rgba(215, 113, 80, 1.0);
+        color: white;
+    }
+
+    .centrar {
+        text-align: center;
+    }
+   
+
+    .ancho1 {
+        margin-top: 30px;
+        margin-bottom: 1rem;
+    }
+
+    .colorError {
+        margin: 0 0 10px;
+        font-size: 14px;
+    }
+
+    .colorError ul {
+        list-style: none;
+    }
+
+
+    .contenidoNaranja {
+    background-color: rgb(255,113,1);
+    color: white;
+    text-align: left;
+    }
+
+    .contenidoNaranja .boton {
+        background-color: white;
+        color: rgb(255,113,1);
+    }
+
+
+    .contenidoBlanco {
+        color: white !important;
+    }
+
+    .fuenteMasOcuro500 {
+        font-weight: 500;
+    }
+
+    .fuenteMenosOcuro200 {
+        font-weight: 200;
+    }
+
+    .fuenteTamaño1 {
+        font-size: 1.0rem;
+    }
+
+    .fuenteTamaño2 {
+        font-size: 1.5rem;
+    }
+
+    .pagina1 img {
+        width: 100%;
+    }
+
+    ul {
+        padding-inline-start: 0px;
+        padding-left: 0px;
+    }
+
+    .Pantalla2 .izquierda {
+        text-align: left;
+        margin-left: 20px;
+    }
+
+    .Pantalla1 .izquierda {
+        text-align: left;
+    }
+
+    .Pantalla3 .izquierda {
+        text-align: left;
+    }
+
+
+    .textonaranja {
+        color: rgb(255,113,1);
+    }
+
+
+    .panel2 {
+        padding-top: 25px;
+        padding-bottom: 50px;
+        background-image: url(/imagenes/Fondo1.png);
+        color: rgb(255,113,1);
+    }
+
+    .panel1 .anchoPanel, .panel2 .anchoPanel {
+        padding-left: 23px;
+        padding-right: 23px;
+        padding-top: 40px;
+    }
+
+    .espacio150 {
+        margin-bottom: 40px;
+    }
+
+    .Pantalla6 .izquierda {
+        text-align: left;
+    }
+    .fondoNaranja {
+        background-color: rgb(255,113,1)
+    }
+
+    .Pantalla3 .padbot30, .Pantalla4 .padbot30 {
+        padding-bottom: 60px;
+    }
+    .Pantalla6 .padbot30 {
+        padding-bottom: 90px;
+    }
+}

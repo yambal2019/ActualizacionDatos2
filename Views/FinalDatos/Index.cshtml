@@ -1,18 +1,140 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewBag.Title = "Final";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
 }
 
 
 @using (Html.BeginForm("Index", "FinalDatos", FormMethod.Post, new { @class = "theme-form" }))
 {
-    <div class="texto">
-        <h4>Gracias</h4>
+
+    <div class="Pantalla7">
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 contenidoBlanco">
+
+                <div class="panel1">
+                    <div class="izquierda panel1ver">
+                        <img src="~/imagenes/web/1Naranja.png" />
+                    </div>
+
+                    <div class="izquierda panel2ver">
+                        <img src="~/imagenes/icono.png" />
+                    </div>
+
+                    <div>
+                        <div class="anchoPanel centrar">
+                            <div class="row margen centrar panel2ver">
+                                <div class="col-md-12">
+                                    <img src="~/imagenes/estrella.png" />
+                                </div>
+                            </div>
+
+                            <div class="row margen centrar panel1ver">
+                                <div class="col-md-12">
+                                    <img src="~/imagenes/web/estrellaNaranja.png" />
+                                </div>
+                            </div>
+
+                            <div class="row margen centrar">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <h2>
+                                                ¡MUY BIEN!
+                                            </h2>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row margen left">
+                                <div class="col-md-12">
+
+                                    <div>
+                                        Hemos validado tu correo electrónico satisfactoriamente.
+                                        <br>
+                                        <strong>Ya tienes 2 opciones en el sorteo.</strong> 
+                                        Para mayor detalle revisa las bases en el siguiente link:  <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class="pantalla7"> Bases del concurso </a>.
+                                        <br>
+                                        Las ganadoras se anunciarán en el Portal de Negocio el 16 de Diciembre de 2019.
+                                        <br>
+                                       
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row margen centrar">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            <h4>
+                                                ¡Mucha Suerte!
+                                            </h4>
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            @*<div class="col-md-6">
+                    <div class="panel2">
+                        <div class="izquierda panel1ver">
+                            <img src="~/imagenes/web/1Blanco.png" />
+                        </div>
+
+                        <div class="izquierda panel2ver">
+                            <img src="~/imagenes/swoosh _naranja.png" />
+                        </div>
+
+                        <div>
+                            <div class="anchoPanel">
+                                <div class="row margen centrar">
+                                    <div class="col-md-12">
+                                        <img src="~/imagenes/estrella.png" />
+                                    </div>
+                                </div>
+
+                                <div class="row margen centrar">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">
+                                                <h2>
+                                                    !MUY BIEN¡
+                                                </h2>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row margen centrar">
+                                    <div class="col-md-12">
+                                        <label class="form-label "><h3 class="fuenteMenosOcuro">Haz actualizado tu número de celular satisfactoriamente.</h3></label>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>*@
+
+        </div>
+
 
     </div>
 
-   
 
 }
 

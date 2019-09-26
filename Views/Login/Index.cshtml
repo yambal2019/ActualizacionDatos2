@@ -1,0 +1,141 @@
+﻿
+@model ActualizacionDatosCampaña.Models.UserModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #f1f2f7;
+            color: rgba(118, 118, 118, 1.0);
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            padding: 0px !important;
+            margin: 0px !important;
+            line-height: 23px;
+            font-style: normal;
+            font-weight: normal;
+            min-height: 100%;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 350px;
+            margin: 0 auto 40px;
+            padding: 20px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            text-align: left;
+        }
+
+        .login-wrapper {
+            height: 100%;
+            overflow: auto;
+            overflow-x: hidden;
+        }
+
+        .loginpage {
+            padding: 0 50px;
+            border: 1px solid #EFF2F7;
+            border-radius: 0.375rem;
+            color: #ff7810;
+            background-color: white;
+        }
+
+        loginpage form {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            margin-left: 0;
+            font-weight: 400;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            overflow: hidden;
+            background-color: transparent;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="container" style=" padding-bottom: 20px;">
+            <div class="row">
+                <a class="navbar-brand mr-lg-5" href="https://www.yanbal.com/pe">
+                    <img alt="Image placeholder" src="~/imagenes/logo.png" id="navbar-logo" style="height: 40px;">
+                </a>
+            </div>
+        </div>
+
+        <div style="background-color: #ff7810;">
+
+
+            <div class="login loginpage col-lg-offset-4 col-lg-4 col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6">
+                <div class="info" style="text-align:center;">
+                    <h1>Login</h1>
+
+                    <img src="~/imagenes/staff-Yanbal.png" style="height:150px;width:100px" />
+                    <br />
+                    <br />
+                </div>
+
+                @using (Html.BeginForm("Autorizacion", "Login", FormMethod.Post, new { @class = "form" }))
+                {
+
+                    <div class="form-group">
+                        <label class="form-label" for="field-1">Código</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(u => u.User, new { @class = "form-control input-sm myTextBox", id = "txtUsr", autofocus = "autofocus" })
+                            <div>@Html.ValidationMessageFor(u => u.User, "", new { @class = "text-danger" })</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="field-1">Contraseña</label>
+                        <div class="controls">
+                            @Html.PasswordFor(u => u.Password, new { @class = "form-control input-sm myTextBox", id = "txtPassword" })
+                            <div>@Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })</div>
+                        </div>
+                    </div>
+                    @Html.ValidationSummary()
+                    <input type="submit" value="Iniciar Sesión" class="btn btn-warning btn-block" id="btnValidar" />
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

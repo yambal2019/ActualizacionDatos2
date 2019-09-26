@@ -1,21 +1,83 @@
 ﻿
 @{
-    ViewBag.Title = "Final";
-    Layout = "~/Views/Shared/_Master.cshtml";
+  ViewBag.Title = "Datos";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
 }
 
 
 
 @using (Html.BeginForm("Final", "DatosEmail", FormMethod.Post, new { @class = "theme-form" }))
 {
-    <div class="texto">
-        <h4>Gracias</h4>
+    
 
-    </div>
 
-    <div class="team">
+    <div class="Pantalla6 Borde">
+        <div class="container">
+            <div class="row bordePagina2">
 
-        <h6> Te hemos enviado un Email. Haz click en el <ins>link</ins> para que puedas acceder al beneficio.</h6>
+                <div class="col-md-3 pantalla2Panel1 ancho1">
+                    <div>
+                        <img src="~/imagenes/icono.png" class="imageIcono" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+                    <main role="main" class="bajar60 padbot30">
+                        <section class="">
+                            <div class="ancho izquierda">
+                                <div class="">
+                                    <div class="col-12">
+                                        <img src="~/imagenes/icono.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fondo">
+                                <div class="content-body contenidoNaranja">
+                                    <div class="row margen izquierda">
+                                        <div class="col-md-12">
+                                            <img src="~/imagenes/check.png" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row margen">
+                                        <div class="col-md-12 izquierda">
+                                            <div class="form-group">
+                                                <label class="form-label">
+                                                    <h5>
+                                                        <strong>Hemos enviado un mensaje a tu correo electrónico </strong> para confirmarlo.
+                                                        <strong>Haz click en el link </strong>para tener una opción más en nuestro sorteo.
+                                                    </h5>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row margen centrar">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </main>
+
+
+                </div>
+                <div class="col-md-3 pantalla2Panel2">
+
+
+                </div>
+            </div>
+
+        </div>
     </div>
 
 }

@@ -1,44 +1,117 @@
 ﻿@model ActualizacionDatosCampaña.Models.ConsultoraModel
+
+
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewBag.Title = "Datos";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
+}
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
 }
 
 
 
+<div class="container Borde Pantalla1">
+    <div class="row borde">
 
-@using (Html.BeginForm("Index", "Datos", FormMethod.Post, new { @class = "theme-form" }))
-{
+        <div class="col-md-7 borrar">
+
+            <div>
+                <img src="~/imagenes/web/1Blanco.png" class="imageIcono" />
+            </div>
+            <div class="centrar">
+                <img src="~/imagenes/web/1.png" class="imageLogo" />
+            </div>
+        </div>
+        <div class="col-md-5 espacio150">
+
+            <div class="text-center">
+                <div class="ancho pagina1">
+                    <div class="">
+                        <div class="col-md-12">
+                            <img src="~/imagenes/actualizaganaunique.png" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+                @using (Html.BeginForm("Index", "Datos", FormMethod.Post, new { @class = "", @novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="fondo">
+                        <div class="content-body izquierda">
+                            <div class="row margen">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="form-label">Tipo de Dato:</label>
+                                        @Html.DropDownListFor(m => m.TipoDocumentoId, Model.ListaTipoDocumento, "- Seleccione -", new { @class = "form-control", @style = "border-color: #FDB45C" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margen">
+                                <div class="col-md-12">
+                                    <div class="form-group izquierda">
+                                        <label class="form-label">Dato:</label>
+
+                                        <div class="controls">
+
+                                            <input type="text" id="vchDato" name="vchDato" class="form-control caja" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row margen centrar">
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <p class="forgetmenot">
+                                            <label class="icheck-label form-label" for="rememberme">
+                                                @Html.CheckBoxFor(model => model.bitTerminosCondiciones, new { @class = "" })
+                                            </label>
+                                            <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class="nuevo"> Acepto las Bases del concurso </a>
+                                    </div>
+                                    <div class="form-group">
+
+                                        @Html.ValidationSummary(false, "", new { @class = "colorError text-danger" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row margen centrar">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="submit">
+                                            <input type="submit" name="wp-submit" id="btnsubmit" class="boton btn" value="COMENZAR" />
+                                        </div>
+                                    </div>
 
 
-    <div class="texto">
-        <h4>  Actualiza y gana.. </h4>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+
+        </div>
+
     </div>
 
+</div>
 
-    <p>
-        <label for="user_pass">
-            Ingresa tu dni:<br />
 
-        </label>
-        <input type="text" name="vchDato" id="vchDato" class="form-control" />
 
-    </p>
-    <p class="forgetmenot">
-        <label class="icheck-label form-label" for="rememberme">
-
-            @Html.CheckBoxFor(model => model.bitTerminosCondiciones, new { @class = "" })
-        </label>
-        <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class=""> Acepto Términos y Condiciones </a>
-    </p>
-
-    <div>
-        <p> @Html.ValidationSummary()</p>
-    </div>
-
-    <div class="submit">
-        <input type="submit" name="wp-submit" id="btnsubmit" class="btn btn-primary btn-border" value="COMENZAR" />
-    </div>
-
+@section scripts{
+    <script type="text/ecmascript">
+            $(function () {
+            $("#vchDato").focus();
+        });
+    </script>
 }
-

@@ -17,7 +17,7 @@ namespace ActualizacionDatosCampaña.Data
 
             updateCommand.CommandType = CommandType.StoredProcedure;
 
-            updateCommand.Parameters.AddWithValue("@idDato", TBDato.intDato);
+            updateCommand.Parameters.AddWithValue("@idDato", TBDato.idDato);
 
 
             if (TBDato.bitConfirmadoSMS.HasValue == true)
@@ -55,7 +55,7 @@ namespace ActualizacionDatosCampaña.Data
             {
                 updateCommand.Parameters.AddWithValue("@dtmFechaConfirmadoEmail", DBNull.Value);
             }
-
+            updateCommand.Parameters.AddWithValue("@vchEmail", TBDato.vchEmail);
             //==========================================================================================
 
             updateCommand.Parameters.AddWithValue("@vchEstado", TBDato.vchEstado);
@@ -96,43 +96,21 @@ namespace ActualizacionDatosCampaña.Data
             SqlCommand insertCommand = new SqlCommand(insertProcedure, connection);
             insertCommand.CommandType = CommandType.StoredProcedure;
 
-    //vchDato NVARCHAR(50),
-    //vchEmail NVARCHAR(50),
-    //vchTelefono NCHAR(10),
-    //bitEnviadoSMS BIT,
-    //dtmFechaEnvioSMS DATETIME,
-    //bitConfirmadoSMS BIT,
-    //dtmFechaConfirmadoSMS DATETIME,
-
-    //bitEnviadoEmail BIT,
-    //dtmFechaEnviadoEmail DATETIME,
-    //bitConfirmadoEmail BIT,
-    //dtmFechaConfirmadoEmail DATETIME,
-    //vchCodConsultora INT,
-    //vchEstado NVARCHAR(1),
-    //idPromocion INT,
-    //ReturnValue INT OUTPUT,
-    //NewIdDato INT OUTPUT
-
-
-             //insertCommand.Parameters.AddWithValue("@vchDato", TBDato.vchDato);
-            //insertCommand.Parameters.AddWithValue("@vchEmail", TBDato.vchEmail);
             insertCommand.Parameters.AddWithValue("@vchTelefono", TBDato.vchTelefono);
             insertCommand.Parameters.AddWithValue("@bitEnviadoSMS", TBDato.bitEnviadoSMS);
             insertCommand.Parameters.AddWithValue("@dtmFechaEnvioSMS", TBDato.dtmFechaEnvioSMS);
-            //insertCommand.Parameters.AddWithValue("@bitConfirmadoSMS", TBDato.bitConfirmadoSMS);
-            //insertCommand.Parameters.AddWithValue("@dtmFechaConfirmadoSMS", TBDato.dtmFechaConfirmadoSMS);
-
-            //insertCommand.Parameters.AddWithValue("@bitEnviadoEmail", TBDato.bitEnviadoEmail);
-            //insertCommand.Parameters.AddWithValue("@dtmFechaEnviadoEmail", TBDato.dtmFechaEnviadoEmail);
-            //insertCommand.Parameters.AddWithValue("@bitConfirmadoEmail", TBDato.bitConfirmadoEmail);
+           
             insertCommand.Parameters.AddWithValue("@vchCodConsultora", TBDato.vchCodConsultora);
             insertCommand.Parameters.AddWithValue("@vchEstado", TBDato.vchEstado);
             insertCommand.Parameters.AddWithValue("@idPromocion", TBDato.idPromocion);
+            insertCommand.Parameters.AddWithValue("@vchTipoCanal", 1);/*TBDato.vchTipoCanal*/
+            insertCommand.Parameters.AddWithValue("@bitTerminosCondiciones", TBDato.bitTerminosCondiciones);
 
-       
+            insertCommand.Parameters.AddWithValue("@vchTelefonoOld", TBDato.vchTelefonoAntiguo);
+            insertCommand.Parameters.AddWithValue("@vchEmailOld", TBDato.vchEmailAntiguo);
+            insertCommand.Parameters.AddWithValue("@vchTipoDocumento", TBDato.idTipoDocumento);
 
-            
+
             insertCommand.Parameters.Add("@NewIdDato", System.Data.SqlDbType.Int);
             insertCommand.Parameters["@NewIdDato"].Direction = ParameterDirection.Output;
 
@@ -161,10 +139,43 @@ namespace ActualizacionDatosCampaña.Data
             }
             finally
             {
+                insertCommand.Dispose();
                 connection.Close();
             }
         }
 
+        public static void AddLink( DatoModel objDatoModel, int Tipo)
+        {
+            SqlConnection connection = new SqlConnection(StaticConnectionString);
+            SqlCommand updateCommand = new SqlCommand("TBDato_UpdateLink", connection);
+            updateCommand.CommandType = CommandType.StoredProcedure;
 
+            if (Tipo==1)
+            {
+                updateCommand.Parameters.AddWithValue("@vchlink", objDatoModel.vchLink);
+            }
+            if (Tipo == 2)
+            {
+                updateCommand.Parameters.AddWithValue("@vchlink", objDatoModel.vchLink);
+            }
+            updateCommand.Parameters.AddWithValue("@intTipo", Tipo);
+            updateCommand.Parameters.AddWithValue("@idDato", objDatoModel.idDato);
+
+            try
+            {
+                connection.Open();
+                updateCommand.ExecuteNonQuery();
+               
+            }
+            catch (SqlException ex)
+            {
+               
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
     }
 }

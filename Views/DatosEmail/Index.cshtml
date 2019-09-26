@@ -1,28 +1,84 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Master.cshtml";
+    ViewBag.Title = "Email";
+    Layout = "~/Views/Shared/_MasterMob.cshtml";
 }
-
-
 
 
 
 @using (Html.BeginForm("Index", "DatosEmail", FormMethod.Post, new { @class = "theme-form" }))
 {
-    <div class="center-align">
-        <h2>Felicitaciones </h2>
-    </div>
-    <div>
-        <h3>Haz ganado un 5% de descuento en tu siguiente pedido! </h3>
-    </div>
-    <div class="center-align">
-        <h4>¿Quieres seguir ganando?</h4>
-    </div>
+    <div class="Pantalla4 Borde">
+        <div class="container">
+            <div class="row bordePagina2">
+
+                <div class="col-md-3 pantalla2Panel1">
+                    <div>
+                        <img src="~/imagenes/web/1Naranja.png" class="imageIcono" />
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 pantalla2Panel2">
 
 
-    <dev class="">
-        <input type="submit" name="wp-submit" id="wp-submit" class="btn btn-primary btn-border" value="Descubre Cómo" />
-    </dev>
+                </div>
+                <div class="col-md-6 espacio150 fondoNaranja ">
+
+                    <main role="main" class="naranja">
+                        <section>
+                            <div class="ancho">
+                                <div class="">
+                                    <div class="col-12 izquierda">
+                                        <img src="~/imagenes/icono.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fondo">
+                                <div class="content-body contenidoNaranja">
+                                    <div class="row margen">
+                                        <div class="col-md-12">
+                                            <img src="~/imagenes/estrella.png" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row margen">
+                                        <div class="col-md-12">
+                                            <h2>
+                                                ¡FELICITACIONES!
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="row margen">
+                                        <div class="col-md-12">
+                                            <label class="form-label fuente1">Ya tienes una opción para participar en el sorteo.</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <label class="form-label fuente1">¿Quieres una opción más?</label>
+                                        </div>
+                                    </div>
+                                    <div class="row margen top35">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="submit">
+                                                    <input type="submit" name="wp-submit" id="btnsubmit" class="boton btn" value="CLIC AQUÍ" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </main>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 
 }
