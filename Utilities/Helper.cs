@@ -16,7 +16,7 @@ using System.Net.Http.Headers;
 //using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
-
+using System.Web.Mvc;
 
 namespace ActualizacionDatosCampaña.Utilities
 {
@@ -230,73 +230,93 @@ namespace ActualizacionDatosCampaña.Utilities
 
         }
 
+        public static SelectList ListaTipoDocumento()
+        {
+            List<ParametroModel> lista = Helper.ListaBD("TIPO_DOCUMENTO");
+
+            List<TipoDocumentoModel> objLista = new List<TipoDocumentoModel>();
+            foreach (var item in lista)
+            {
+                TipoDocumentoModel obj = new TipoDocumentoModel();
+
+                obj.intTipoDocumento = Convert.ToInt32(item.vchValor);
+                obj.vchDocumento = item.vchCampo;
+
+                objLista.Add(obj);
+            }
+
+
+            SelectList ListaTipoDocumento = new SelectList(objLista, "intTipoDocumento", "vchDocumento");
+
+            return ListaTipoDocumento;
+        }
 
 
 
-    //    public static void EnvioSMSAsync(ConsultoraModel objModel)
-    //    {
-    //        List<ParametroModel> objListaParametro = ListaBD("SMS_CONFIGURACION");
+        //    public static void EnvioSMSAsync(ConsultoraModel objModel)
+        //    {
+        //        List<ParametroModel> objListaParametro = ListaBD("SMS_CONFIGURACION");
 
-    //        //try
-    //        //{
-    //            string BASE_URL = objListaParametro[0].vchValor;
+        //        //try
+        //        //{
+        //            string BASE_URL = objListaParametro[0].vchValor;
 
-    //            string USERNAME = objListaParametro[1].vchValor;
-    //            string PASSWORD = objListaParametro[2].vchValor;
-    //             string FROM = "InfoSMS";
+        //            string USERNAME = objListaParametro[1].vchValor;
+        //            string PASSWORD = objListaParametro[2].vchValor;
+        //             string FROM = "InfoSMS";
 
-    //        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-    //        try
-    //        {
-    //            var client = new RestClient("https://mrxqw.api.infobip.com/sms/2/text/single");
-
-              
-    //            string TO = "+51" + objModel.vchTelefono;
-            
-    //            string MESSAGE_TEXT = objListaParametro[3].vchValor + "  " + DateTime.Now.ToString() + " " + Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS;
-
-    //            var model = new Envio
-    //            {
-    //                from= FROM,
-    //                to = TO,
-    //                text = MESSAGE_TEXT
-    //            };
+        //        //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-    //            var request = new RestRequest(Method.POST);
-    //            request.AddHeader("accept", "application/json");
-    //            request.AddHeader("content-type", "application/json");
-    //            request.AddHeader("authorization", "Basic VU5JUVVFX1lBTkJBTDpVbmlxdWUuMjAxOQ==");
-    //            request.AddParameter("application/json", Newtonsoft.Json.JsonConvert.SerializeObject(model), ParameterType.RequestBody);
-
-    //            IRestResponse response = client.Execute(request);
-    //        }
-    //        catch (Exception ex)
-    //        {
-
-    //            throw;
-    //        }
-            
+        //        try
+        //        {
+        //            var client = new RestClient("https://mrxqw.api.infobip.com/sms/2/text/single");
 
 
-    //        //}
-    //        //catch (Exception ex)
-    //        //{
+        //            string TO = "+51" + objModel.vchTelefono;
+
+        //            string MESSAGE_TEXT = objListaParametro[3].vchValor + "  " + DateTime.Now.ToString() + " " + Helper.TextoBD("SMS_LINK") + objModel.vchEncriptadoSMS;
+
+        //            var model = new Envio
+        //            {
+        //                from= FROM,
+        //                to = TO,
+        //                text = MESSAGE_TEXT
+        //            };
 
 
-    //        //}
+        //            var request = new RestRequest(Method.POST);
+        //            request.AddHeader("accept", "application/json");
+        //            request.AddHeader("content-type", "application/json");
+        //            request.AddHeader("authorization", "Basic VU5JUVVFX1lBTkJBTDpVbmlxdWUuMjAxOQ==");
+        //            request.AddParameter("application/json", Newtonsoft.Json.JsonConvert.SerializeObject(model), ParameterType.RequestBody);
+
+        //            IRestResponse response = client.Execute(request);
+        //        }
+        //        catch (Exception ex)
+        //        {
+
+        //            throw;
+        //        }
 
 
-    //    }
-    //}
-    //public class Envio
-    //{
-    //    public string from { get; set; }
-    //    public string to { get; set; }
-    //    public string text { get; set; }
-        
+
+        //        //}
+        //        //catch (Exception ex)
+        //        //{
+
+
+        //        //}
+
+
+        //    }
+        //}
+        //public class Envio
+        //{
+        //    public string from { get; set; }
+        //    public string to { get; set; }
+        //    public string text { get; set; }
+
     }
 
 }

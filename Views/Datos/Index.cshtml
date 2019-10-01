@@ -58,7 +58,9 @@
 
                                         <div class="controls">
 
-                                            <input type="text" id="vchDato" name="vchDato" class="form-control caja" />
+                                          
+                                            @Html.TextBoxFor(m => m.vchDato,  new { @class = "form-control caja" })
+
                                         </div>
                                     </div>
 
@@ -72,7 +74,7 @@
                                             <label class="icheck-label form-label" for="rememberme">
                                                 @Html.CheckBoxFor(model => model.bitTerminosCondiciones, new { @class = "" })
                                             </label>
-                                            <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class="nuevo"> Acepto las Bases del concurso </a>
+                                            <a href=@Url.Content("~/Pdf/Terminos_Condiciones.pdf") target="_blank" class="nuevo"> Acepto las bases del sorteo </a>
                                     </div>
                                     <div class="form-group">
 

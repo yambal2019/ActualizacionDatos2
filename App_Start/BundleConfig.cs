@@ -20,7 +20,7 @@ namespace ActualizacionDatosCampaña
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                       "~/Scripts/bootstrap.js", "~/Scripts/jquery.validate.min.js", "~/Scripts/jquery.validate.unobtrusive.js", "~/Scripts/jquery.inputmask.bundle.min.js"));
+                       "~/Scripts/bootstrap.js", "~/Scripts/jquery.validate.min.js", "~/Scripts/jquery.validate.unobtrusive.js", "~/Scripts/jquery.inputmask.bundle.min.js", "~/Scripts/datepicker.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/pace-theme-flash.css",
                       "~/Content/bootstrap.min.css",

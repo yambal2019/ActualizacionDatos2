@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using ActualizacionDatosCampaña.Models;
@@ -99,7 +100,7 @@ namespace ActualizacionDatosCampaña.Data
             insertCommand.Parameters.AddWithValue("@vchTelefono", TBDato.vchTelefono);
             insertCommand.Parameters.AddWithValue("@bitEnviadoSMS", TBDato.bitEnviadoSMS);
             insertCommand.Parameters.AddWithValue("@dtmFechaEnvioSMS", TBDato.dtmFechaEnvioSMS);
-           
+
             insertCommand.Parameters.AddWithValue("@vchCodConsultora", TBDato.vchCodConsultora);
             insertCommand.Parameters.AddWithValue("@vchEstado", TBDato.vchEstado);
             insertCommand.Parameters.AddWithValue("@idPromocion", TBDato.idPromocion);
@@ -109,7 +110,7 @@ namespace ActualizacionDatosCampaña.Data
             insertCommand.Parameters.AddWithValue("@vchTelefonoOld", TBDato.vchTelefonoAntiguo);
             insertCommand.Parameters.AddWithValue("@vchEmailOld", TBDato.vchEmailAntiguo);
             insertCommand.Parameters.AddWithValue("@vchTipoDocumento", TBDato.idTipoDocumento);
-
+            insertCommand.Parameters.AddWithValue("@vchDato", TBDato.vchDato);
 
             insertCommand.Parameters.Add("@NewIdDato", System.Data.SqlDbType.Int);
             insertCommand.Parameters["@NewIdDato"].Direction = ParameterDirection.Output;
@@ -144,13 +145,13 @@ namespace ActualizacionDatosCampaña.Data
             }
         }
 
-        public static void AddLink( DatoModel objDatoModel, int Tipo)
+        public static void AddLink(DatoModel objDatoModel, int Tipo)
         {
             SqlConnection connection = new SqlConnection(StaticConnectionString);
             SqlCommand updateCommand = new SqlCommand("TBDato_UpdateLink", connection);
             updateCommand.CommandType = CommandType.StoredProcedure;
 
-            if (Tipo==1)
+            if (Tipo == 1)
             {
                 updateCommand.Parameters.AddWithValue("@vchlink", objDatoModel.vchLink);
             }
@@ -165,17 +166,142 @@ namespace ActualizacionDatosCampaña.Data
             {
                 connection.Open();
                 updateCommand.ExecuteNonQuery();
-               
+
             }
             catch (SqlException ex)
             {
-               
+
             }
             finally
             {
                 connection.Close();
             }
 
+        }
+
+
+        public static List<DatoModel> BusquedaConsultora(DatosViewModel objDatosViewModel)
+        {
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "TBDatoPorCodConsultora";
+            command.CommandType = CommandType.StoredProcedure;
+            SqlConnection staticConnection = StaticSqlConnection;
+            command.Connection = staticConnection;
+
+            DataTable dt = new DataTable("tb");
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(command);
+
+            List<DatoModel> objList = new List<DatoModel>();
+
+            try
+            {
+                command.Parameters.AddWithValue("@vchDato", objDatosViewModel.vchDato);               
+                command.Parameters.AddWithValue("@vchTipoDocumento", objDatosViewModel.TipoDocumentoId);
+
+
+                staticConnection.Open();
+                sqlAdapter.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        DatoModel obj = new DatoModel();
+
+                        obj.idDato = (Int32)row["idDato"];
+                        obj.vchTipoDocumento = Convert.IsDBNull(row["vchTipoDocumento"]) ? null : (string)row["vchTipoDocumento"];
+                        obj.vchDato = Convert.IsDBNull(row["vchDato"]) ? null : (string)row["vchDato"];
+
+                        obj.vchTipoCanal = Convert.IsDBNull(row["vchTipoCanal"]) ? null : (string)row["vchTipoCanal"];
+                        obj.vchEmail = Convert.IsDBNull(row["vchEmail"]) ? null : (string)row["vchEmail"];
+                        obj.vchTelefono = Convert.IsDBNull(row["vchTelefono"]) ? null : (string)row["vchTelefono"];
+                        obj.bitEnviadoSMS = Convert.IsDBNull(row["bitEnviadoSMS"]) ? false : (bool)row["bitEnviadoSMS"];
+
+                        if (!Convert.IsDBNull(row["dtmFechaEnvioSMS"]))
+                        {
+                            obj.dtmFechaEnvioSMS = (DateTime)row["dtmFechaEnvioSMS"];
+                        }
+
+                        obj.bitConfirmadoSMS = Convert.IsDBNull(row["bitConfirmadoSMS"]) ? false : (bool)row["bitConfirmadoSMS"];
+
+                        if (!Convert.IsDBNull(row["dtmFechaConfirmadoSMS"]))
+                        {
+                            obj.dtmFechaConfirmadoSMS = (DateTime)row["dtmFechaConfirmadoSMS"];
+                        }
+                        obj.vchLinkSMS = Convert.IsDBNull(row["vchLinkSMS"]) ? null : (string)row["vchLinkSMS"];
+                        obj.bitEnviadoEmail = Convert.IsDBNull(row["bitEnviadoEmail"]) ? false : (bool)row["bitEnviadoEmail"];
+                        if (!Convert.IsDBNull(row["dtmFechaEnviadoEmail"]))
+                        {
+                            obj.dtmFechaEnviadoEmail = (DateTime)row["dtmFechaEnviadoEmail"];
+                        }
+                        obj.bitConfirmadoEmail = Convert.IsDBNull(row["bitConfirmadoEmail"]) ? false : (bool)row["bitConfirmadoEmail"];
+                        if (!Convert.IsDBNull(row["dtmFechaConfirmadoEmail"]))
+                        {
+                            obj.dtmFechaConfirmadoEmail = (DateTime)row["dtmFechaConfirmadoEmail"];
+                        }
+
+                        obj.vchLinkEmail = Convert.IsDBNull(row["vchLinkEmail"]) ? null : (string)row["vchLinkEmail"];
+
+                        if (!Convert.IsDBNull(row["vchCodConsultora"]))
+                        {
+                            obj.vchCodConsultora = row["vchCodConsultora"].ToString();
+                        }
+                        obj.vchEstado = Convert.IsDBNull(row["vchEstado"]) ? null : (string)row["vchEstado"];
+                        obj.bitTerminosCondiciones = Convert.IsDBNull(row["bitTerminosCondiciones"]) ? false : (bool)row["bitTerminosCondiciones"];
+                        obj.vchEmailAntiguo = Convert.IsDBNull(row["vchEmailOld"]) ? null : (string)row["vchEmailOld"];
+                        obj.vchTelefonoAntiguo = Convert.IsDBNull(row["vchTelefonoOld"]) ? null : (string)row["vchTelefonoOld"];
+
+                        objList.Add(obj);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                staticConnection.Close();
+                command.Dispose();
+            }
+            return objList;
+        }
+
+        public static DataTable DescargaDatosRangofecha(DateTime dtmFechaInicio, DateTime dtmFechaFin)
+        {
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "TBDatos_PorRangoFecha";
+            command.CommandType = CommandType.StoredProcedure;
+            SqlConnection staticConnection = StaticSqlConnection;
+            command.Connection = staticConnection;
+
+            DataTable dt = new DataTable("tb");
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(command);
+
+            List<DatoModel> objList = new List<DatoModel>();
+
+            try
+            {
+                command.Parameters.AddWithValue("@dtmFechaInicio", dtmFechaInicio);
+                command.Parameters.AddWithValue("@dtmFechaFin", dtmFechaFin);
+
+
+                staticConnection.Open();
+                sqlAdapter.Fill(dt);
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                staticConnection.Close();
+                command.Dispose();
+            }
+            return dt;
         }
     }
 }

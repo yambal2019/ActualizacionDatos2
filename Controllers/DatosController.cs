@@ -1,13 +1,14 @@
-﻿using ActualizacionDatosCampaña.Data;
-using ActualizacionDatosCampaña.Models;
-using ActualizacionDatosCampaña.Utilities;
+﻿
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-
+using System.Data;
+using System.IO;
+using ClosedXML.Excel;
+using ActualizacionDatosCampaña.Data;
+using ActualizacionDatosCampaña.Models;
+using ActualizacionDatosCampaña.Utilities;
 
 namespace ActualizacionDatosCampaña.Controllers
 {
@@ -95,7 +96,7 @@ namespace ActualizacionDatosCampaña.Controllers
                         if (modelo.TipoDocumentoId == 1)
                         {
                            
-                                ModelState.AddModelError("vchDato", "código de consultora no existe");
+                                ModelState.AddModelError("vchDato", "Código de consultora no existe");
                                 return View(modelo);
                             
 
@@ -129,7 +130,7 @@ namespace ActualizacionDatosCampaña.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("vchDato", "Debe aceptar las Bases del concurso");
+                    ModelState.AddModelError("vchDato", "Debe aceptar las bases del sorteo");
                     return View(modelo);
                 }
             }
@@ -216,7 +217,7 @@ namespace ActualizacionDatosCampaña.Controllers
                     objDatoModel.vchTipoCanal = objConsultoraModel.vchTipoCanal;
                     objDatoModel.bitTerminosCondiciones = objConsultoraModel.bitTerminosCondiciones;
                     objDatoModel.vchCodConsultora = objConsultoraModel.vchCodConsultora;
-
+                    objDatoModel.vchDato = objConsultoraModel.vchDato;
                     //*******************************************************************
                     //objDatoModel.idTipoDocumento = 1;
                     //objDatoModel.vchDato = modelo.vchDato;
@@ -286,6 +287,31 @@ namespace ActualizacionDatosCampaña.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult DescargaArchivo(DatosModel  model)
+        {
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                DataTable dt = new DataTable();
+
+
+
+                dt = DAODato.DescargaDatosRangofecha(Convert.ToDateTime(CampañaModel.SelectedCampañaId));
+
+                // dt = ToDataTableCSV(dt);
+                //}
+                ////wb.Worksheets.Add(dt, "Seguimiento");
+                var ws = wb.Worksheets.Add(dt, "Premio Por Consultora");
+
+                ws.Cells("A1:S1").Style.Fill.BackgroundColor = XLColor.Orange;
+
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    wb.SaveAs(stream);
+                    return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", DateTime.Now.ToShortDateString() + ".xlsx");
+                }
+            }
+        }
         [HttpGet]
         public ActionResult prueba()
         {

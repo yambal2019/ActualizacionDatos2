@@ -1,66 +1,368 @@
-﻿<!doctype html>
-<html lang="es">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html >
 
-<head>
-
-    <meta charset="utf-8">
-    <title>Yanbal de Perú </title>
+<head><!--sapMktConditionHelper-->
+    <!-- temporary included javascript lib, coming from SAP Marketing message editor; do not touch; it will be removed with upload file automatically -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        div[data-sap-hpa-ceimo-block-type='SUBJECT'] .sapConditionHoverBtn {
+            right: 0;
+        }
+        .sapConditionBtn {
+            display: block;
+            width: 100%;
+            margin: 5px 0px;
+            padding: 2px 20px;
+        }
+        .sapConditionHelper {
+            background-color: lightgray;
+            padding: 0px 5px;
+            opacity: 0.8;
+        }
+        .sapConditionBtnActive {
+            border: 1px solid lightgrey;
+        }
+        .sapConditionHoverBtn {
+            padding: 2px 20px;
+            opacity: 0.8;
+        }
+        .hideSapConditionHoverBtn {
+            display: none;
+        }
+        div[data-sap-hpa-ceimo-condition]:nth-child(2) {
+        	display: inherit;
+        } 
+    </style>
+    <script type="text/javascript">
+        var defaultConditionLabel = "Default";
+        $(document).ready(function () {
+            var aCondtions = [];
+            $("div[data-sap-hpa-ceimo-condition]").each(function () {
+            	if ($(this).attr("data-sap-hpa-ceimo-block-type") === "ASC") {
+                    return;
+                }
+                var sCondition = $(this).data("sap-hpa-ceimo-condition");
+                if (aCondtions.indexOf(sCondition) <= -1) {
+                    aCondtions.push(sCondition);
+                }
+                sCondition = sCondition === "" ? defaultConditionLabel : sCondition;
+                var sConditionHoverBtn = "<button class='sapConditionHoverBtn hideSapConditionHoverBtn' style='position: absolute'>" + sCondition + "</button>" + $(this).html();
+                $(this).html(sConditionHoverBtn);
+                $(this).hover(function () {
+                    $($(this).children()[0]).removeClass("hideSapConditionHoverBtn");
+                }, function () {
+                    $(".sapConditionHoverBtn").addClass("hideSapConditionHoverBtn");
+                });
+            });
+            aCondtions.reverse();
+            if (aCondtions.length > 0) {
+                $("body").after("<div class='sapConditionHelper' style='position: fixed; left: 0; top: 0;' ><strong class='sapConditionBtn'>Conditions:</strong></div>");
+                $.each(aCondtions, function (iIndex, oButton) {
+                    var btnLabel = !this || this.length === 0 ? defaultConditionLabel : this;
+                    $(".sapConditionHelper").html($(".sapConditionHelper").html() + "<button class='sapConditionBtn' data-sap-hpa-ceimo-condition='" + this + "'>" + btnLabel + "</button>");
+                });
+                $(".sapConditionHelper").html($(".sapConditionHelper").html() + "<button class='sapConditionBtn' data-sap-hpa-ceimo-condition='__all__'>All</button> ");
+                $("button[data-sap-hpa-ceimo-condition]").each(function () {
+                    $(this).click(function () {
+                        $(".sapConditionBtn").removeClass("sapConditionBtnActive");
+                        $(this).addClass("sapConditionBtnActive");
+                        var sCondition = $(this).data("sap-hpa-ceimo-condition");
+                        $("div[data-sap-hpa-ceimo-condition]").each(function () {
+                            $(this).show();
+                        });
+                        if (sCondition !== "__all__") {
+                            $("div[data-sap-hpa-ceimo-condition]").each(function () {
+                                if ($(this).data("sap-hpa-ceimo-condition") !== sCondition) {
+                                    $(this).hide();
+                                }
+                                var sBlockId = $(this).data("sap-hpa-ceimo-blockid");
+                                var bFound = false;
+                                $("div[data-sap-hpa-ceimo-blockid='" + sBlockId + "']").each(function () {
+                                    if ($(this).data("sap-hpa-ceimo-condition") !== "" && $(this).data("sap-hpa-ceimo-condition") === sCondition) {
+                                        bFound = true;
+                                        return false;
+                                    }
+                                });
+                                if (!bFound && $(this).data("sap-hpa-ceimo-condition") === "") {
+                                    $(this).show();
+                                }
+                            });
+                        }
+                    });
+                });
+                $("button[data-sap-hpa-ceimo-condition='']").click();
+            }
+        });
+    </script>
+    <!--sapMktConditionHelper-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- utf-8 works for most cases -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plantilla de envio de email">
-    <meta name="author" content="Luis Cano">
+    <!-- Forcing initial-scale shouldn't be necessary -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">
+    <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <title>Imagen Titulo Texto</title>
+    
+    <style type="text/css">
+        /* CLIENT-SPECIFIC STYLES */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
 
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+		
+	  .small {
+			display: block;
+			font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+			font-size: 10px;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 12px;
+			letter-spacing: normal;
+			text-align: justify;
+	   }
+	   
+	   .medium {
+			display: block;
+			font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 24px;
+			letter-spacing: normal;
+			text-align: left;
+	   }
+	   
+	    .bigblue,
+        .bigblue span {
+            display: inline-block;
+            width: 100%;
+            font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+            font-size: 18px;
+            font-style: normal;            
+            line-height: 28px;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+
+        /* iOS BLUE LINKS */
+
+        .small[x-apple-data-detectors] {
+            display: block;
+			font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+			font-size: 10px !important;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 12px;
+			letter-spacing: normal;
+			text-align: justify;
+        }
+		
+		.medium[x-apple-data-detectors] {
+            display: block;
+			font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+			font-size: 14px  !important;
+			font-style: normal;
+			font-weight: normal;
+			line-height: 24px;
+			letter-spacing: normal;
+			text-align: left;
+        }
+		
+		.bigblue[x-apple-data-detectors] {
+            display: inline-block;
+            font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif;
+            font-size: 18px !important;
+            font-style: normal;            
+            line-height: 28px;
+            letter-spacing: 5px;
+            text-align: center;
+        }
+       
+	</style>    
 </head>
-<body>
-    <br />
-    <br />
 
-    <div class="row" style="border: 3px solid #ff7810; width: 80%; border-collapse: collapse; padding-left:3em;padding-right:3em; ">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <h1 style="color:#ff7810"> <em>ACTUALIZACION DE DATOS</em> </h1>
-                <br />
-                <p><strong>Hola, </strong> </p>
-                <br />
 
-                <p>{Mensaje_Cuerpo_Email}</p>
 
-                <p></p>
-                <p>FechaRegistro : {fechaRegistro}</p>
-                <p>Email : {Email}</p>
-            
-                <br />
-                <p>Para validar el envio, hacer click en el siguiente <a href={Link}>Link</a></p>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
+<body width="100%" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-line-height-rule: exactly;" bgcolor="#ffffff">
 
-                <br />
-                <br />
-                <br />
-                <br />
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="mod-2"></div>
-            <div class="md-6">
 
-                <br />
-                <br />
-                <br />
-                <br />
-            </div>
-            <div class="mod-2">v1</div>
-        </div>
 
-    </div>
-    <br />
-    <br />
-    <br />
-
-</body>
-</html>
+<!--[if mso]><table border="0" cellpadding="0" cellspacing="0" align="left" style="mso-table-lspace:0pt;  mso-table-rspace:0pt; border-collapse: collapse; width: 100%"><tr><td style="width: 100%;"><![endif]-->
+<div style="float: left; width: 100%" class="sapMktBlock"
+data-sap-hpa-ceimo-block-type="TEXT"
+data-sap-hpa-ceimo-condition=""
+data-sap-hpa-ceimo-blockid="1545239831511964"
+data-sap-hpa-ceimo-blockid-parent=""
+data-sap-hpa-ceimo-block-editable="X">
+<!--HEADER-->
+<table align="center" bgcolor="#FF6900" border="0" cellpadding="0" cellspacing="0" class="full-container orange-bg k- table k-table" 
+       style="width: 100% !important;" width="100%">
+<tbody>
+<tr>
+<td align="center">
+<table class="container tcenter-m k- table k-table">
+<tbody>
+<tr>
+<td><a href="https://www.yanbal.com/pe" title="
+" class="link p10 pv15" data-sap-hpa-ceimo-link-id="15695328372801559" data-sap-hpa-ceimo-link-paramname="" 
+       data-sap-hpa-ceimo-link-paramvalue="" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" 
+       data-sap-hpa-ceimo-link-trackable="X"> 
+    <img src="http://www.unique-yanbal.info/store/plantillas/comunes/logo_unique_genesis.png" alt="UNIQUE" width="150" height="50" 
+         style="display: block;" data-sap-hpa-ceimo-image-id="15695328372801565" data-sap-hpa-ceimo-image="SMOImage"
+         data-sap-hpa-ceimo-image-type="Static"> </a></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--FIN HEADER--> <!--CONTENT-->
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" width="100%" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; width: 600px;">
+<tbody>
+<tr>
+<td align="center"><!-- ID:BG SECTION-2 -->
+<table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; width: 600px;">
+<tbody>
+<tr>
+<td align="center" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse;">
+<tbody>
+<tr>
+<td height="30" style="mso-line-height-rule: exactly; line-height: 30px;">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" width="600" valign="middle">
+    <img src="http://www.unique-yanbal.info/store/plantillas/comunes/Actualiza.jpg" alt="Image" title="Image" width="600px" style="color: #333333; border-radius: 5px; max-width: 600px; width: 100%; opacity: 1;" data-sap-hpa-ceimo-image-id="15695328372801566" data-sap-hpa-ceimo-image="SMOImage" data-sap-hpa-ceimo-image-type="Static"></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; mso-line-height-rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" style="color: #FF6900; font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 600; size: 18px; line-height: 28px; letter-spacing: 1px; transform: uppercase; rule: exactly; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse;" class="Heading bigblue">
+    <multiline>&iexcl;Confirma tu correo electr&oacute;nico!</multiline></td>
+</tr>
+<tr>
+<td height="10" style="font-size: 0; rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" height="4" style="color: #666666; height: 4px; font-size: 0;"></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+<tr><!-- ID:TXT CONTENT -->
+<td style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; mso-line-height-rule: exactly;" class="MsoNormal text-center"><multiline> <span class="MsoNormal text-center medium" style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-line-height-rule: exactly;">Estás a un paso de tener <strong>DOS</strong> opciones en nuestro súper sorteo del programa ¡Actualizar es Ganar!, haz clic en el botón &quot;Confirma aquí&quot;, valida tu dirección de correo electrónico y listo.</span> </multiline></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">
+<table align="left" bgcolor="#FF6900" border="0" cellpadding="0" cellspacing="0" class="display-button k-table" style="border-radius: 5px;">
+<tbody>
+<tr>
+<td align="center" style="color: #ffffff; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 600; padding: 7px 12px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;" class="MsoNormal"><multiline><a rel="noopener noreferrer" href={Link} target="_blank" title="Dale Play" style="color: #ffffff; text-decoration: none;" data-sap-hpa-ceimo-link-id="15695328372801560" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" data-sap-hpa-ceimo-link-trackable="X" data-sap-hpa-ceimo-link-type="Static">CONFIRMA AQUÍ</a> </multiline></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr><tr><!-- ID:TXT CONTENT -->
+<td style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; mso-line-height-rule: exactly;" class="MsoNormal text-center"><multiline> <span class="MsoNormal text-center medium" style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-line-height-rule: exactly;"> <multiline>&iexcl;Muchas gracias!</multiline> </span> </multiline></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+<tr><!-- ID:TXT CONTENT -->
+<td style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; mso-line-height-rule: exactly;" class="MsoNormal text-center"><span class="MsoNormal text-center medium" style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-line-height-rule: exactly;"> <multiline> Con mucho cari&ntilde;o,<br><strong>Unique S.A.</strong> </multiline> </span></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+<tr><!-- ID:TXT CONTENT -->
+<td style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-weight: 400; font-size: 14px; line-height: 24px; mso-line-height-rule: exactly;" class="MsoNormal text-center"><span class="small" style="color: #666666; font-family: Segoe UI, Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; mso-line-height-rule: exactly;"> <multiline> "Este correo electr&oacute;nico contiene informaci&oacute;n confidencial y recomendaciones comerciales elaboradas - en virtud; del contrato de Locaci&oacute;n de Servicios correspondiente-por Unique S.A. exclusivamente para las Directoras Independientes y las empresas que estas representan. Dichas recomendaciones tienen como finalidad apoyarlas en el crecimiento de sus negocios; sin embargo, en su calidad de empresaria, es decisi&oacute;n de cada Directora Independiente organizar su gesti&oacute;n comercial como lo considere conveniente a sus necesidades. Adicionalmente, los datos y la informaci&oacute;n aqu&iacute; consignados son proporcionados a su representada para la adecuada prestaci&oacute;n del servicio que esta brinda a Unique S.A., por lo que deber&aacute;n ser utilizados &uacute;nicamente para los fines se&ntilde;alados en el presente correo electr&oacute;nico y de acuerdo con el contrato de Locaci&oacute;n de Servicios vigente, cumpliendo con los est&aacute;ndares de seguridad exigidos por la Ley de Protecci&oacute;n de Datos Personales y su Reglamento". Si ya no deseas recibir comunicaciones haz clic aqu&iacute;. </multiline> </span></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<!--FIN CONTENT--> <!--FOOTER-->
+<table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" class="full-container orange-bg tcenter k-table" width="100%">
+<tbody>
+<tr>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+<tr>
+<td class="p10">
+<table width="600" align="center" class="container k-table" style="border-top: 1px solid #FF6900; border-bottom: 1px solid #FF6900;">
+<tbody>
+<tr>
+<td height="10" width="207" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+<tr>
+<td align="center" style="font-family: 'Segoe UI', Helvetica Neue, Arial, Verdana, Trebuchet MS, sans-serif; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; mso-line-height-rule: exactly; color: #FF6900 !important;"><multiline> UNIQUE,<br>UNA COMPA&Ntilde;&Iacute;A DE<br>YANBAL INTERNATIONAL </multiline></td>
+</tr>
+<tr>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center">
+<table class="mini-container k-table">
+<tbody>
+<tr>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+<tr>
+<td><a rel="noopener noreferrer" href="https://www.facebook.com/Unique.PE/" target="_blank" title="" class="link" data-sap-hpa-ceimo-link-id="15695328372801561" data-sap-hpa-ceimo-link-paramname="" data-sap-hpa-ceimo-link-paramvalue="" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" data-sap-hpa-ceimo-link-trackable="X"><img src="http://www.unique-yanbal.info/store/plantillas/comunes/fb_2019.gif" alt="32x32x5" title="Facebook" data-sap-hpa-ceimo-image-id="15695328372801567" data-sap-hpa-ceimo-image="SMOImage" data-sap-hpa-ceimo-image-type="Static"></a></td>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+<td><a rel="noopener noreferrer" href="https://www.instagram.com/uniqueperu/" target="_blank" title="" class="link" data-sap-hpa-ceimo-link-id="15695328372801562" data-sap-hpa-ceimo-link-paramname="" data-sap-hpa-ceimo-link-paramvalue="" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" data-sap-hpa-ceimo-link-trackable="X"><img src="http://www.unique-yanbal.info/store/plantillas/comunes/ig_2019.gif" alt="32x32x5" title="Instagram" data-sap-hpa-ceimo-image-id="15695328372801568" data-sap-hpa-ceimo-image="SMOImage" data-sap-hpa-ceimo-image-type="Static"></a></td>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+<td><a rel="noopener noreferrer" href="http://www.youtube.com/Peunique" target="_blank" title="" class="link" data-sap-hpa-ceimo-link-id="15695328372801563" data-sap-hpa-ceimo-link-paramname="" data-sap-hpa-ceimo-link-paramvalue="" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" data-sap-hpa-ceimo-link-trackable="X"><img src="http://www.unique-yanbal.info/store/plantillas/comunes/yt_2019.gif" alt="32x32x5" title="Youtube" data-sap-hpa-ceimo-image-id="15695328372801569" data-sap-hpa-ceimo-image="SMOImage" data-sap-hpa-ceimo-image-type="Static"></a></td>
+</tr>
+<tr>
+<td height="10" style="font-size: 0; mso-line-height-rule: exactly; line-height: 10px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+<tr>
+<td align="center" style="font-size: 12px; font-family: Arial, sans-serif; color: #666666 !important;"><multiline>
+<p>Av. Juan de Arona 151 Torre A Piso 3 San Isidro, Lima-Per&uacute;.<br><a href="http://www.unique.pe.com" title="www.unique.pe" data-sap-hpa-ceimo-link-id="15695328372801564" data-sap-hpa-ceimo-link-paramname="" data-sap-hpa-ceimo-link-paramvalue="" data-sap-hpa-ceimo-link-outboundid="X" data-sap-hpa-ceimo-link-utm="X" data-sap-hpa-ceimo-link-trackable="X">www.unique.pe </a></p>
+</multiline></td>
+</tr>
+<tr>
+<td height="20" style="font-size: 0; mso-line-height-rule: exactly; line-height: 20px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<!--FIN FOOTER-->
+</div><!--[if mso]></td></tr></table><![endif]-->
+</body></html>

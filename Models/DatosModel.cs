@@ -19,7 +19,8 @@ namespace ActualizacionDatosCampaña.Models
         public Int32 TipoEnvio { get; set; }
 
         public string vchDato { get; set; }
-
+        public string vchTipoDocumento { get; set; }
+        
         public string vchEmail { get; set; }
         public string vchTelefono { get; set; }
 
@@ -53,6 +54,9 @@ namespace ActualizacionDatosCampaña.Models
         public string vchLinkEmail { get;  set; }
 
         public IEnumerable<DatoModel> Resultado { get; set; }
+        public DateTime dtmFechaInicio{ get; set; }
+        public DateTime dtmFechaFin { get; set; }
+
 
     }
 

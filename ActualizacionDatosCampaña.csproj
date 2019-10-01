@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Models\ConsultoraModel.cs" />
     <Compile Include="Models\DatosModel.cs" />
+    <Compile Include="Models\DatosViewModel.cs" />
     <Compile Include="Models\ParametroModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\WSConsultoraModel.cs" />
@@ -177,6 +178,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="Content\mobil.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -216,6 +218,7 @@
     <Content Include="fonts\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\datepicker.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />

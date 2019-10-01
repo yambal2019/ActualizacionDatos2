@@ -9,7 +9,11 @@ namespace ActualizacionDatosCampaña.Data
     public class DAOParametro : BaseData
     {
 
-
+        /// <summary>
+        /// para una lista de valores de la tabla TBParametro
+        /// </summary>
+        /// <param name="Valor"></param>
+        /// <returns></returns>
         public static List<ParametroModel> ParametroLista(String Valor)
         {
             SqlCommand command = new SqlCommand();
@@ -58,7 +62,11 @@ namespace ActualizacionDatosCampaña.Data
         }
 
 
-
+        /// <summary>
+        /// para un solo valor
+        /// </summary>
+        /// <param name="Valor"></param>
+        /// <returns></returns>
         public static ParametroModel ParametroUnValor(String Valor)
         {
 
